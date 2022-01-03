@@ -1,0 +1,476 @@
+<nb-card>
+    <nb-card-header>Part Details</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="form">
+            <!-- PART NAME -->
+            <div class="form-group">
+                <label for="name" class="label">Part Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="name.invalid && (name.dirty || name.touched)" nbInput
+                            fullWidth formControlName="name" id="name" placeholder="eg. GB LHD Reservoir">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                </li>
+                                <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PRODUCT NUMBER -->
+            <div class="form-group">
+                <label for="code" class="label">Part Number</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="code.invalid && (code.dirty || code.touched)" nbInput
+                            fullWidth formControlName="code" id="code" placeholder="eg. 79001">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="code.invalid && (code.dirty || code.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="code.errors?.required"> <small>Please enter a code.</small>
+                                </li>
+                                <li *ngIf="code.errors?.minlength"> <small>code should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="form-group">
+                <label for="description" class="label">Description <small>(optional)</small></label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text"
+                            [class.is-invalid]="description.invalid && (description.dirty || description.touched)"
+                            nbInput fullWidth formControlName="description" id="description"
+                            placeholder="eg. Project GB">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="description.errors?.required"> <small>Please enter a description.</small>
+                                </li>
+                                <li *ngIf="description.errors?.minlength"> <small>description should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- RAW MATERIAL NAME -->
+            <div class="form-group">
+                <label for="rm_name" class="label">Raw Material</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" #autoInput autocomplete="off"
+                            [class.is-invalid]="description.invalid && (description.dirty || description.touched)"
+                            nbInput fullWidth formControlName="rm_name" id="rm_name" (input)="onDataChange()"
+                            placeholder="eg. PPCP MI3530" [nbAutocomplete]="auto">
+                        <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+                            <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option.name">
+                                {{ option.name }}
+                            </nb-option>
+
+                        </nb-autocomplete>
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="description.invalid && (description.dirty || description.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="description.errors?.required"> <small>Please enter a description.</small>
+                                </li>
+                                <li *ngIf="description.errors?.minlength"> <small>description should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PART WEIGHT -->
+            <div class="form-group">
+                <label for="partWeight" class="label">Part Weight</label>
+                <div class="row">
+                    <div class="col-md-3 col-5">
+                        <nb-form-field>
+
+                            <input type="number"
+                                [class.is-invalid]="partWeight.invalid && (partWeight.dirty || partWeight.touched)"
+                                nbInput fullWidth class="form-control" formControlName="partWeight" id="partWeight"
+                                placeholder="eg. 92.50">
+                            <span nbSuffix
+                                [class.is-invalid]="partWeight.invalid && (partWeight.dirty || partWeight.touched)"
+                                class="input-group-text" id="basic-addon1">g</span>
+                        </nb-form-field>
+
+                    </div>
+
+                    <!-- ERROR -->
+                    <div *ngIf="partWeight.invalid && (partWeight.dirty || partWeight.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="partWeight.errors?.required"> <small>Please enter a weight</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- SHOT WEIGHT -->
+            <div class="form-group">
+                <label for="weight" class="label">Shot Weight</label>
+                <div class="row">
+                    <div class="col-md-3 col-5">
+                        <nb-form-field>
+
+                            <input type="number"
+                                [class.is-invalid]="shotWeight.invalid && (shotWeight.dirty || shotWeight.touched)"
+                                nbInput fullWidth class="form-control" formControlName="shotWeight" id="shotWeight"
+                                placeholder="eg. 92.50">
+                            <span nbSuffix
+                                [class.is-invalid]="shotWeight.invalid && (shotWeight.dirty || shotWeight.touched)"
+                                class="input-group-text" id="basic-addon1">g</span>
+                        </nb-form-field>
+                    </div>
+
+
+                    <!-- ERROR -->
+                    <div *ngIf="shotWeight.invalid && (shotWeight.dirty || shotWeight.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="shotWeight.errors?.required"> <small>Please enter a weight</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- CYCLE TIME -->
+            <div class="form-group">
+                <label for="cycleTime" class="label">Cycle Time</label>
+                <div class="row">
+                    <div class="col-md-2 col-5">
+                        <nb-form-field>
+
+                            <input type="number"
+                                [class.is-invalid]="cycleTime.invalid && (cycleTime.dirty || cycleTime.touched)" nbInput
+                                fullWidth class="form-control" formControlName="cycleTime" id="cycleTime"
+                                placeholder="eg. 120">
+                            <span nbSuffix
+                                [class.is-invalid]="cycleTime.invalid && (cycleTime.dirty || cycleTime.touched)"
+                                class="input-group-text" id="basic-addon1">s</span>
+                        </nb-form-field>
+
+                    </div>
+
+
+                    <!-- ERROR -->
+                    <div *ngIf="cycleTime.invalid && (cycleTime.dirty || cycleTime.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="cycleTime.errors?.required"> <small>Please enter a price</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- CAVITY -->
+            <div class="form-group">
+                <label for="cavity" class="label">Cavity</label>
+                <div class="row">
+                    <div class="col-md-2 col-5">
+                        <nb-form-field>
+
+                            <input type="number" [class.is-invalid]="cavity.invalid && (cavity.dirty || cavity.touched)"
+                                nbInput fullWidth class="form-control" formControlName="cavity" id="cavity"
+                                placeholder="eg. 120">
+
+                        </nb-form-field>
+
+                    </div>
+
+
+                    <!-- ERROR -->
+                    <div *ngIf="cavity.invalid && (cavity.dirty || cavity.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="cavity.errors?.required"> <small>Please enter a price</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- TYPE OF INVENTORY -->
+            <div class="form-group col-md-6">
+                <label for="inventoryType" class="label">Type of inventory</label>
+                <div class="row radio-section">
+
+                    <div class="col radio-option">
+                        <label>
+                            <input type="radio" [(ngModel)]="option" (change)="onChange()" id="WIP"
+                                formControlName="inventoryType" value="WIP">
+                            <div class="card radio-card" for="control_01">
+                                <img class="" src="/assets/app/wip.svg" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-title text-center label">WIP</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col radio-option">
+                        <label>
+                            <input type="radio" [(ngModel)]="option" (change)="onChange()" id="FG"
+                                formControlName="inventoryType" value="FG" checked>
+                            <div class="card radio-card" for="control_02">
+                                <img class="card-img-top" src="/assets/app/fg.svg" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-title text-center label">FG</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </nb-card-body>
+</nb-card>
+
+<!-- SOURCING DETAILS -->
+<nb-card>
+    <nb-accordion>
+        <nb-accordion-item expanded>
+            <!-- SOURCING DETAIL -->
+            <nb-accordion-item-header>Sourcing Details</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                <div [formGroup]="form">
+                    <!-- CUSTOMER -->
+                    <div *ngIf="option == 'FG'" class="form-group">
+                        <label for="customer" class="label">Customer</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" #autoInput
+                                    [class.is-invalid]="description.invalid && (description.dirty || description.touched)"
+                                    nbInput fullWidth formControlName="rm_name" id="rm_name" (input)="onDataChange()"
+                                    placeholder="eg-Mando" [nbAutocomplete]="auto">
+                                <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+                                    <nb-option *ngFor="let option of customersFiltered$ | async" [value]="option.name">
+                                        {{ option.name }}
+                                    </nb-option>
+
+                                </nb-autocomplete>
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="customer.invalid && (customer.dirty || customer.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="customer.errors?.required"> <small>Please enter a customer.</small>
+                                        </li>
+                                        <li *ngIf="customer.errors?.minlength"> <small>customer should contain atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- NEXT OPERATION -->
+                    <div *ngIf="option == 'WIP'" class="form-group">
+                        <label for="nextOperation" class="label">Next Operation</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text"
+                                    [class.is-invalid]="nextOperation.invalid && (nextOperation.dirty || nextOperation.touched)"
+                                    nbInput fullWidth formControlName="nextOperation" id="nextOperation"
+                                    placeholder="eg. Trimming">
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="nextOperation.invalid && (nextOperation.dirty || nextOperation.touched)"
+                                class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="nextOperation.errors?.required"> <small>Please enter next
+                                                Operation.</small>
+                                        </li>
+                                        <li *ngIf="nextOperation.errors?.minlength"> <small>next Operation should
+                                                contain
+                                                atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PRICE -->
+                    <div class="form-group">
+                        <label for="price" class="label">Price</label>
+                        <div class="row">
+                            <div class="col-md-2 col-5">
+                                <nb-form-field>
+                                    <span nbPrefix [class.is-invalid]="price.invalid && (price.dirty || price.touched)"
+                                        class="input-group-text" id="basic-addon1">&#8377;</span>
+                                    <input type="number"
+                                        [class.is-invalid]="price.invalid && (price.dirty || price.touched)" nbInput
+                                        fullWidth class="form-control" formControlName="price" id="price"
+                                        placeholder="eg. 120">
+                                </nb-form-field>
+
+                            </div>
+
+
+                            <!-- ERROR -->
+                            <div *ngIf="price.invalid && (price.dirty || price.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="price.errors?.required"> <small>Please enter a price</small></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+    </nb-accordion>
+</nb-card>
+<!-- ENGINEERING DETAILS -->
+<nb-card>
+    <nb-accordion>
+        <nb-accordion-item>
+            <nb-accordion-item-header>Engineering details</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                <div [formGroup]="form">
+                    <!-- DRAWING NUMBER -->
+                    <div *ngIf="option == 'FG'" class="form-group">
+                        <label for="customer" class="label">Drawing Number</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text"
+                                    [class.is-invalid]="customer.invalid && (customer.dirty || customer.touched)"
+                                    nbInput fullWidth formControlName="customer" id="customer"
+                                    placeholder="eg. 101DA514">
+                            </div>
+                            <!-- ERROR -->
+                            <!-- <div *ngIf="customer.invalid && (customer.dirty || customer.touched)" class="col-md-6">
+                            <div class="error">
+                                <ul>
+                                    <li *ngIf="customer.errors?.required"> <small>Please enter a customer.</small>
+                                    </li>
+                                    <li *ngIf="customer.errors?.minlength"> <small>customer should contain atleast 3
+                                            characters.</small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> -->
+                        </div>
+                    </div>
+                    <!-- ISSUE NUMBER -->
+                    <div class="form-group">
+                        <label for="nextOperation" class="label">Latest Issue Number</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text"
+                                    [class.is-invalid]="nextOperation.invalid && (nextOperation.dirty || nextOperation.touched)"
+                                    nbInput fullWidth formControlName="nextOperation" id="nextOperation"
+                                    placeholder="eg. 101DA514">
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="nextOperation.invalid && (nextOperation.dirty || nextOperation.touched)"
+                                class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="nextOperation.errors?.required"> <small>Please enter next
+                                                Operation.</small>
+                                        </li>
+                                        <li *ngIf="nextOperation.errors?.minlength"> <small>next Operation should
+                                                contain
+                                                atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ISSUE DATE -->
+                    <div class="form-group">
+                        <label for="nextOperation" class="label">Latest Issue date</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker">
+                                <nb-datepicker #dateTimePicker></nb-datepicker>
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="nextOperation.invalid && (nextOperation.dirty || nextOperation.touched)"
+                                class="cola-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="nextOperation.errors?.required"> <small>Please enter next
+                                                Operation.</small>
+                                        </li>
+                                        <li *ngIf="nextOperation.errors?.minlength"> <small>next Operation should
+                                                contain
+                                                atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+    </nb-accordion>
+</nb-card>
+
+<!-- PART DETAILS -->
+<nb-card>
+    <nb-accordion>
+        <nb-accordion-item>
+            <nb-accordion-item-header>Part details</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                <div class="form-group">
+                    <label for="tax_slab" class="label">Select a Tax</label>
+                    <div class="row">
+                        <div class="col-md-2 col-5">
+                            <nb-select [class.is-invalid]="tax_slab.invalid && (tax_slab.dirty || tax_slab.touched)"
+                                placeholder="eg. 0%" formControlName="tax_slab" id="tax_slab">
+                                <nb-option disabled>Select a Tax</nb-option>
+                                <nb-option value="0">0%</nb-option>
+                                <nb-option value="5">5%</nb-option>
+                                <nb-option value="12">12%</nb-option>
+                                <nb-option value="18">18%</nb-option>
+                                <nb-option value="28">28%</nb-option>
+                            </nb-select>
+                        </div>
+                    </div>
+                </div>
+
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+    </nb-accordion>
+</nb-card>
+
+<!-- FOOTER -->
+<!-- (event)="onButtonClicked($event)" [status]="validity" -->
+<ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer>

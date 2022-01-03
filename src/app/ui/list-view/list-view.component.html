@@ -1,0 +1,27 @@
+<nb-card>
+
+
+  
+    <nb-list>
+        <nb-list-item style="cursor: pointer;" *ngFor="let item of list" (click)="onItemClicked(item)">
+            <span>{{item.name}}</span>
+            <!-- <span *ngIf="item?.typeOfDocument=='loading'">
+                <span *ngIf="item?.date" class="col-2">{{item.date.toMillis()|date:'dd/MM/yyyy'}}</span>
+                <span *ngIf="item?.partNo" class="col-2">{{item.partNo}}</span>
+                <span *ngIf="item?.partName" class="col-2">{{item.partName}}</span>
+                <span *ngIf="item?.quantity" class="col-2">{{item.quantity}}</span>
+                <span *ngIf="item?.invoiceNumber" class="col-2">{{item.invoiceNumber}}</span>
+                <span *ngIf="item?.invoiceDate" class="col-2">{{item.invoiceDate.toMillis()|date:'dd/MM/yyyy'}}</span>
+                <span class="col-2" style="vertical-align:bottom;">
+                    <svg *ngIf="item?.grnNo; else noGrn" height="20" width="20">
+                        <circle cx="10" cy="10" r="10" stroke="grey" stroke-width="1" fill="green" />
+                    </svg>
+                    <ng-template #noGrn><svg height="20" width="20">
+                            <circle cx="10" cy="10" r="10" stroke="grey" stroke-width="1" fill="red" />
+                        </svg></ng-template>
+                </span>
+            </span> -->
+        </nb-list-item>
+    </nb-list>
+
+</nb-card>

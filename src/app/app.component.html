@@ -1,0 +1,19 @@
+<app-navbar (sidenavStatus)="toggleSidenav($event)"></app-navbar>
+<app-sidenav [showSidenav]="showSidenav"></app-sidenav>
+<nb-layout center>
+
+
+
+
+
+  <!-- <app-pages></app-pages> -->
+  <!-- <div class="main"> -->
+  <!-- </div> -->
+  <nb-layout-column [@routeAnimations]="prepareRoute(outlet)" class="main" id="main">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </nb-layout-column>
+
+  <!-- <nb-layout-footer fixed>
+  </nb-layout-footer> -->
+
+</nb-layout>

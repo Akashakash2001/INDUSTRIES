@@ -1,0 +1,98 @@
+<nb-card>
+    <nb-card-header>Employee Details</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="name" class="label">Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="name.invalid && (name.dirty || name.touched)" nbInput
+                            fullWidth formControlName="name" id="name" placeholder="eg. Ajay">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                </li>
+                                <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="code" class="label">Code</label>
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="text" [class.is-invalid]="code.invalid && (code.dirty || code.touched)" nbInput
+                            fullWidth formControlName="code" id="code" placeholder="eg. Ex - 19001">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="code.invalid && (code.dirty || code.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="code.errors?.required"> <small>Please enter code of the Employee</small>
+                                </li>
+                                <li *ngIf="code.errors?.minlength"> <small>Employee's code should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone" class="label">Phone</label>
+                <div class="row">
+                    <div class="col-md-3">
+                        <nb-form-field>
+                            <span nbPrefix>+91</span>
+                            <input fullWidth type="number"
+                                [class.is-invalid]="phone.invalid && (phone.dirty || phone.touched)" nbInput fullWidth
+                                formControlName="phone" id="phone" placeholder="999 111 2222">
+                        </nb-form-field>
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="phone.errors?.required"> <small>Please enter a Phone number</small>
+                                </li>
+                                <li *ngIf="phone.errors?.minlength"> <small>Enter a valid
+                                        Phone number</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="label">Email <small>(optional)</small></label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <nb-form-field>
+                            <span nbPrefix>@</span>
+                            <input fullWidth type="text"
+                                [class.is-invalid]="email.invalid && (email.dirty || email.touched)" nbInput fullWidth
+                                formControlName="email" id="email" placeholder="abc@xyz.com">
+                        </nb-form-field>
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="email.errors?.pattern"> <small>Enter a valid email id</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>
+<!-- FOOTER -->
+<ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer>

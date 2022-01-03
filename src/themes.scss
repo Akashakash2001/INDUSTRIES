@@ -1,0 +1,27 @@
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/dark';
+
+$nb-themes: nb-register-theme((
+
+  // add your variables here like:
+
+  color-primary-100: #f2f6ff,
+  color-primary-200: #d9e4ff,
+  color-primary-300: #a6c1ff,
+  color-primary-400: #F0C32F,
+  color-primary-500: #efbd1b,
+  color-primary-600: #274bdb,
+  color-primary-700: #212121,
+  color-primary-800: #1a1a1a,
+  color-primary-900: #000000,
+
+  color-primary-default: #F0C32F,
+  button-filled-primary-text-color: #000000,
+
+  background-basic-color-1: color-primary-700,
+  background-basic-color-3: color-primary-900,
+  header-shadow: 0, 0.5rem: 1rem, 0: rgba(0, 0, 0, 0.1),
+  input-basic-background-color: color-primary-900,
+  input-basic-focus-background-color: color-primary-800,
+  input-basic-hover-background-color: #2a2a2a
+), dark, dark);

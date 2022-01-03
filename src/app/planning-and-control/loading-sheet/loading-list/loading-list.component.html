@@ -1,0 +1,74 @@
+<!-- <div class="col-md-3" style="padding-top: 15px;padding-bottom: 15px;">
+    <button nbButton status="primary" (click)="openPart()">
+        <nb-icon icon="plus"></nb-icon>Add Dispatch Record
+    </button>
+</div> -->
+
+<div  class="row">
+    <div class="col-4">
+        <button nbButton size="small" routerLink='/loading/new' status="primary">
+            <nb-icon icon="plus"></nb-icon>Add Dispatch Record
+        </button>
+    </div>
+    <input nbInput placeholder="Pick Date" [nbDatepicker]="date" formControlName="date" id="date" >
+    <nb-datepicker #date></nb-datepicker>
+    <nb-select class="col-4" placeholder="Select Customer" id="customer" style="margin-left: 20px;"
+        [(selected)]="selectedCustomer">
+        <nb-option *ngFor="let customer of customers" [value]="customer.name" (click)="onChange()">{{customer.name}}
+        </nb-option>
+    </nb-select>
+
+    <!-- <div class="col-2"> -->
+    <!-- <nb-select size="small" style="margin-left:auto" [(selected)]='sort' status="basic">
+        <nb-option value="1">name</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+        <nb-option value="3">Option 3</nb-option>
+        <nb-option value="4">Option 4</nb-option>
+    </nb-select> -->
+    <!-- </div> -->
+</div>
+
+<!-- <ui-list-view [list]="data" (onclick)="onItemSelected($event)"></ui-list-view> -->
+<div id="component1">
+<table >
+    <tr >
+        <th class="col-2">Date</th>
+        <th class="col-4">Part Name / Part Number</th>
+        <th class="col-1">Quantity</th>
+        <th class="col-2">Invoice Number</th>
+        <th class="col-2">Invoice Date</th>
+        <th class="col-2">Invoice Value</th>
+        <th class="col-1">GRN Status</th>
+       
+    </tr>
+    <tr style="cursor: pointer;" *ngFor="let item of data" (click)="onItemSelected(item)">
+        <td *ngIf="item?.date" class="col-2">{{item.date.toMillis()|date:'dd/MM/yyyy'}}</td>
+        <td style="text-align: center;" *ngIf="item?.partNo" class="col-4">{{item.partName}}/{{item.partNo}}</td>
+        <td style="text-align: center;" *ngIf="item?.quantity" class="col-1">{{item.quantity}}</td>
+        <td style="text-align: center;" *ngIf="item?.invoiceNo" class="col-2">{{item.invoiceNo}}</td>
+        <td style="text-align: center;" *ngIf="item?.invoiceDate" class="col-1">
+            {{item.invoiceDate.toMillis()|date:'dd/MM/yyyy'}}</td>
+        <td style="text-align: center;" *ngIf="item?.invoiceValue" class="col-1">{{item.invoiceValue}}</td>
+       
+
+           
+        <td style="text-align: center;">
+            <svg *ngIf="item?.grnNo; else noGrn" height="20" width="20">
+                <circle cx="10" cy="10" r="10" stroke="grey" stroke-width="1" fill="green" />
+            </svg>
+            <ng-template #noGrn><svg height="20" width="20">
+                    <circle cx="10" cy="10" r="10" stroke="grey" stroke-width="1" fill="red" />
+                </svg></ng-template>
+        </td>
+    </tr>
+</table>
+</div>
+
+
+    <div class="col-md-1" >
+        <button ngxPrint nbButton size="small"  status="primary" (click)="printComponent('component1')">
+            <nb-icon icon="printer-outline"></nb-icon>Print
+        </button>
+    </div>
+    
+    

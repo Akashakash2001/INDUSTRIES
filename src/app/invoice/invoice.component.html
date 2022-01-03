@@ -1,0 +1,274 @@
+<nb-card>
+    <nb-card-header>Invoice Details</nb-card-header>
+    <nb-card-body>
+        <!-- <h1>{{message}}</h1> -->
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="number" class="label">Invoice Number</label>
+                <div class="row">
+                    <div class="col-md-6" *ngIf="autoManual">
+                        {{number}}
+                        <!-- <input disabled="true" formControlName="InvoiceNumber" type="text" id="number" [(ngModel)]="number" nbInput> -->
+                    </div>
+                    <div class="col-md-6" *ngIf="!autoManual">
+                        <input formControlName="InvoiceNumber" type="text" id="number" placeholder="eg-SIG10" nbInput>
+                    </div>
+
+                    <button nbButton status="info" (click)="open()">
+                        <nb-icon icon="edit"></nb-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div style="padding-left: 15px;"></div>
+                <div class="form-group">
+                    <label for="date" class="label">Invoice Date</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker"
+                                formControlName="date">
+                            <nb-datepicker #dateTimePicker></nb-datepicker>
+                        </div>
+                        <!-- ERROR -->
+                        <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                            <div class="error">
+                                <ul>
+                                    <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                    </li>
+                                    <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                            characters.</small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- ERROR -->
+                <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                            <div class="error">
+                                <ul>
+                                    <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                    </li>
+                                    <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                            characters.</small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> -->
+
+
+
+
+            </div>
+            <div class="form-group">
+                <label for="po" class="label">PO Number</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input formControlName="poNumber" type="text" id="po" placeholder="" nbInput>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--<div class= "row">
+            <div style="padding-left: 15px;"></div>
+        <div class="form-group">
+            <label for="text" class="label">Customer</label>
+            <div class="row">
+                <div class="col-md-6">
+                    <input formControlName="Customer" placeholder="eg-Mando" type="text" id="Customer" nbInput>
+                </div>
+            </div>
+        </div>
+        </div>-->
+
+            <div class="form-group">
+                <label for="rm_name" class="label">Customer</label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" #autoInput
+                            [class.is-invalid]="description.invalid && (description.dirty || description.touched)"
+                            nbInput fullWidth formControlName="rm_name" id="rm_name" (input)="onDataChange()"
+                            placeholder="eg-Mando" [nbAutocomplete]="auto">
+                        <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+                            <nb-option *ngFor="let option of customersFiltered$ | async" [value]="option.name">
+                                {{ option.name }}
+                            </nb-option>
+
+                        </nb-autocomplete>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </nb-card-body>
+
+
+</nb-card>
+
+<div class="col-md-3" style="padding-top: 15px;padding-bottom: 15px;">
+    <button nbButton status="primary" (click)="openPart()">
+        <nb-icon icon="plus"></nb-icon>Add Part
+    </button>
+</div>
+
+<nb-card>
+    <table style="width: 100%;" [formGroup]="form">
+        <tr style="text-align: center;">
+
+            <td>
+                <label for="text" class="label">Part no/Part name</label>
+                <!--<input class="package" style="margin-bottom: 20px; width: 80%; height: 40px;"s type="text" id="package" placeholder="" nbInput>-->
+            </td>
+            <!--<th>
+                <h6>Part Name</h6>
+                <input class="batch" style="margin-bottom: 20px; width: 80%; height: 40px;" type="text" id="batch" placeholder="Enter part.name" nbInput>
+            </th>-->
+            <td>
+                <label for="text" class="label">Batch no</label>
+                <!--<input class="package" style="margin-bottom: 20px; width: 80%; height: 40px;"s type="text" id="package" placeholder="" nbInput>-->
+            </td>
+            <td>
+                <label for="text" class="label">Rate</label>
+
+            </td>
+            <td>
+                <label for="text" class="label">Quantity</label>
+                <!--<input class="package" style="margin-bottom: 20px; width: 80%; height: 40px;"s type="text" id="package" placeholder="" nbInput>-->
+            </td>
+            <td>
+                <label for="text" class="label">Amount</label>
+            </td>
+            <td>
+                <label for="text" class="label">Tax</label>
+            </td>
+
+            <td>
+                <label for="text" class="label">Packaging Details</label>
+                <!--<input class="package" style="margin-bottom: 20px; width: 80%; height: 40px;"s type="text" id="package" placeholder="" nbInput>-->
+            </td>
+
+        </tr>
+        <tr *ngFor="let part of itemList" style="text-align: center;">
+
+            <td>
+                <!--<p>{{part[0].code}}\{{part[0].name}}<input class="package" style="margin-bottom: 20px; width: 80%; height: 40px;"s type="text" id="package" placeholder="" nbInput>-->
+                <input type="text" style="margin-bottom: 20px; width: 80%; height: 40px;" s #autoInput
+                    [class.is-invalid]="description.invalid && (description.dirty || description.touched)" nbInput
+                    fullWidth formControlName="partName" id="partName" (input)="onItemChange()" placeholder="eg-GB LHD"
+                    [nbAutocomplete]="auto">
+                <nb-autocomplete #auto (selectedChange)="onSelectChange($event)">
+
+                    <nb-option *ngFor="let option of partsFiltered$ | async" [value]="option.name" [formGroup]="form">
+                        {{ option.name }}/{{option.code}}
+                    </nb-option>
+
+                </nb-autocomplete>
+            </td>
+            <!--<td>
+                {{part[0].name}}
+            </td>-->
+            <td>
+
+                <!--{{part[1]}}{{part[2]}}--><input class="package"
+                    style="margin-bottom: 20px; width: 80%; height: 40px;" type="text" id="package" placeholder=""
+                    nbInput>
+            </td>
+            <td>
+                <p>rate</p>
+
+            </td>
+            <td>
+                <!--{{part[0].price}}--><input class="Quantity" style="margin-bottom: 20px; width: 40%; height: 40px;"
+                    type="text" id="Quantity" placeholder="" nbInput>
+            </td>
+            <td>
+                <p>amount</p>
+            </td>
+            <!-- TAX SLAB -->
+            <td>
+                <select
+                    style="margin-bottom: 20px; width: 70%; height: 40px; background-color: rgb(5, 5, 5); color: rgb(245, 238, 238); border: rgb(5, 5, 5);"
+                    placeholder="eg. 0%">
+                    <option disabled>Select a Tax</option>
+                    <option value="0">0%</option>
+                    <option value="5">5%</option>
+                    <option value="12">12%</option>
+                    <option value="18">18%</option>
+                    <option value="28">28%</option>
+                </select>
+            </td>
+            <td>
+                <!--{{part[3]}}--><input class="package" style="margin-bottom: 20px; width: 80%; height: 40px;"
+                    type="text" id="package" placeholder="" nbInput>
+            </td>
+        <tr>
+
+
+    </table>
+</nb-card>
+
+
+<!-- TERMS AND CONDITION -->
+<div class="row">
+    <div style="margin-left: 16px;"></div>
+    <nb-card class="col-md-6">
+        <p style="font-weight: bold;">Terms & Conditions</p>
+        <textarea nbInput fullWidth
+            placeholder="Enter the terms and conditions of your business to be displayed in your transaction"
+            style="margin-bottom: 20px; height: 150px;"></textarea>
+    </nb-card>
+
+    <div style="margin-left: 30px;"></div>
+    <nb-card class="col-md-5">
+        <div class="row">
+            <p style="font-weight: bold; margin-left:25px;">Subtotal</p>
+            <div class="col-md-7"></div>
+            <p>0.00</p>
+        </div>
+        <div class="row">
+            <p style="font-weight: bold; margin-left:25px;">TCS</p>
+            <nb-select class="col-md-2" placeholder="Select Showcase" [(selected)]="selectedItem">
+                <nb-option value="" disabled>Select a Tax</nb-option>
+                <nb-option value="0">CGST/SGST</nb-option>
+                <nb-option value="1">IGST</nb-option>
+                <nb-option value="1">UGST</nb-option>
+            </nb-select>
+            <p>0.00</p>
+        </div>
+        <div class="row">
+            <p style="font-weight: bold; margin-left:25px;">Shipping Cost</p>
+            <div class="col-md-5"></div>
+            <input type="text" style="margin-bottom: 10px; width: 20%; height: 40px; " nbInput>
+
+        </div>
+        <div class="row">
+            <p style="font-weight: bold; margin-left:25px;">Total</p>
+            <div class="col-md-8"></div>
+            <p>0.00</p>
+        </div>
+    </nb-card>
+</div>
+
+<div class="row">
+    <div style="margin-left: 18px;"></div>
+    <nb-select status="primary" placeholder="Select Showcase" [(selected)]="selectedItemButton">
+        <nb-option status="primary" value="">Save and Send</nb-option>
+        <nb-option status="primary" value="0"><a routerLink="/print">Save and Print</a></nb-option>
+        <nb-option status="primary" value="1">Save and Share</nb-option>
+        <nb-option status="primary" value="2">Save and Send Later</nb-option>
+    </nb-select>
+    <div class="col-md-1"></div>
+    <button nbButton status="primary" (event)="onButtonClicked($event)">Save as Draft</button>
+    <div class="col-md-1"></div>
+    <button nbButton status="primary">Cancel</button>
+</div>
+<!-- FOOTER -->
+<!--<ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer> -->

@@ -1,0 +1,11 @@
+<nb-card class="footer">
+    <nb-card-body>
+
+        <button class="fancy-button primary" [disabled]="!status" (click)="event.emit('save')">
+            <span>Save</span>
+        </button>
+        <button class="secondary" (click)="onDismissClicked()">
+            <span>Discard</span>
+        </button>
+    </nb-card-body>
+</nb-card>

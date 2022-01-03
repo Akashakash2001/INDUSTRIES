@@ -1,0 +1,341 @@
+<nb-card>
+    <nb-card-header>Mould Details</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="code" class="label">Code</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="code.invalid && (code.dirty || code.touched)" nbInput
+                            fullWidth formControlName="code" id="code" placeholder="eg. MAT-M-233">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="name.invalid && (code.dirty || code.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="code.errors?.required"> <small>Please enter code of the
+                                        Mould</small>
+                                </li>
+                                <li *ngIf="code.errors?.minlength"> <small>Mould Code should contain atleast
+                                        3 characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="label">Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="name.invalid && (name.dirty || name.touched)" nbInput
+                            fullWidth formControlName="name" id="name" placeholder="eg. GB LHD">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="name.errors?.required"> <small>Please enter name of the
+                                        Vendor</small>
+                                </li>
+                                <li *ngIf="name.errors?.minlength"> <small>Mould Name should contain atleast
+                                        3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </nb-card-body>
+</nb-card>
+
+
+<nb-card>
+    <nb-accordion>
+        <nb-accordion-item expanded>
+            <!-- INPUT DETAILS -->
+            <nb-accordion-item-header>Input Details</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                <div [formGroup]="form">
+                    <!-- MATERIAL -->
+                    <div *ngIf="option == 'FG'" class="form-group">
+                        <label for="Material" class="label">Material</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text"
+                                    [class.is-invalid]="material.invalid && (material.dirty || material.touched)"
+                                    nbInput fullWidth formControlName="material" id="material" placeholder="eg. PPCP">
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="material.invalid && (material.dirty || material.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="material.errors?.required"> <small>Please enter a material.</small>
+                                        </li>
+                                        <li *ngIf="material.errors?.minlength"> <small>material should contain atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- NEXT OPERATION -->
+                    <div *ngIf="option == 'WIP'" class="form-group">
+                        <!-- <label for="nextOperation" class="label">Next Operation</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text"
+                                    [class.is-invalid]="nextOperation.invalid && (nextOperation.dirty || nextOperation.touched)"
+                                    nbInput fullWidth formControlName="nextOperation" id="nextOperation"
+                                    placeholder="eg. Trimming">
+                            </div> -->
+                            <!-- ERROR -->
+                            <!-- <div *ngIf="nextOperation.invalid && (nextOperation.dirty || nextOperation.touched)"
+                                class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="nextOperation.errors?.required"> <small>Please enter next
+                                                Operation.</small>
+                                        </li>
+                                        <li *ngIf="nextOperation.errors?.minlength"> <small>next Operation should
+                                                contain
+                                                atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div> -->
+                        <!-- </div> -->
+                    </div>
+                    <!-- CHILD PARTS -->
+                    <div class="form-group" formGroupName="material">
+                        <label for="name" class="label">Child parts</label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <!-- PART NAME -->
+                                    <div class="col-md-6">
+                                        <div >
+                                            <label for="name" class="label"><small>part name</small></label>
+                                        </div>
+                                        <nb-form-field>
+                                            <input type="number" 
+                                                [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                                                nbInput fullWidth id="make" placeholder="Nut insert">
+
+                                        </nb-form-field>
+                                    </div>
+
+                                    <!-- QUANTITY -->
+                                    <div class="col-2">
+                                        <div style="text-align: center;">
+                                            <label for="name" class="label"><small>quantity</small></label>
+                                        </div>
+                                        <nb-form-field>
+                                            <input type="number"
+                                                [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                                                nbInput fullWidth id="make" placeholder="4">
+
+                                        </nb-form-field>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                        </li>
+                                        <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="secondary">
+                        <span>+ Add Child Part</span>
+                    </button>
+                </div>
+
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+    </nb-accordion>
+</nb-card>
+<nb-card>
+    <nb-accordion>
+        <nb-accordion-item>
+            <nb-accordion-item-header>Operational Details</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                <form [formGroup]="form">
+
+                    <!-- TYPE OF MOLD -->
+                    <div class="form-group col-md-6">
+                        <label for="typeOfMould" class="label">Mould/Fixture</label>
+                        <div class="row radio-section">
+
+                            <div class="col radio-option">
+                                <label>
+                                    <input type="radio" id="mould" formControlName="typeOfMould" value="mould">
+                                    <div class="card radio-card" for="control_01">
+                                        <img class="" src="/assets/app/moulding.svg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <p class="card-title text-center label">Mould</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col radio-option">
+                                <label>
+                                    <input type="radio" id="fixture" formControlName="typeOfMould" value="fixture"
+                                        checked>
+                                    <div class="card radio-card" for="control_02">
+                                        <img class="card-img-top" src="/assets/app/welding.svg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <p class="card-title text-center label">Fixture</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MOLD DIMENSIONS -->
+                    <div class="form-group" formGroupName="dimensions">
+                        <label for="name" class="label">Dimensions</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <!-- LENGTH -->
+                                    <div class="col-4">
+                                        <div style="text-align: center;">
+                                            <label for="name" class="label"><small>length</small></label>
+                                        </div>
+                                        <nb-form-field>
+                                            <input type="number" formControlName="length"
+                                                [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                                                nbInput fullWidth id="make">
+                                            <span nbSuffix>cm</span>
+                                        </nb-form-field>
+                                    </div>
+                                    <div class="label">
+                                        <span style="position: absolute; top: 50%;">X</span>
+                                    </div>
+                                    <!-- WIDTH -->
+                                    <div class="col-4">
+                                        <div style="text-align: center;">
+                                            <label for="name" class="label"><small>width</small></label>
+                                        </div>
+                                        <nb-form-field>
+                                            <input type="number" formControlName="width"
+                                                [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                                                nbInput fullWidth id="make">
+                                            <span nbSuffix>cm</span>
+                                        </nb-form-field>
+                                    </div>
+                                    <div class="label">
+                                        <span style="position: absolute; top: 50%;">X</span>
+                                    </div>
+                                    <!-- HEIGHT -->
+                                    <div class="col-4">
+                                        <div style="text-align: center;">
+                                            <label for="name" class="label"><small>height</small></label>
+                                        </div>
+                                        <nb-form-field>
+                                            <input type="number" formControlName="height"
+                                                [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                                                nbInput fullWidth id="make">
+                                            <span nbSuffix>cm</span>
+                                        </nb-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                        </li>
+                                        <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CYCLE TIME -->
+                    <div class="form-group">
+                        <label for="cycleTime" class="label">Cycle time</label>
+                        <div class="row">
+                            <div class="col-md-2 col-5">
+                                <nb-form-field>
+
+                                    <input type="number"
+                                        [class.is-invalid]="cycleTime.invalid && (cycleTime.dirty || cycleTime.touched)"
+                                        nbInput fullWidth class="form-control" formControlName="cycleTime"
+                                        id="cycleTime">
+                                    <span nbSuffix
+                                        [class.is-invalid]="cycleTime.invalid && (cycleTime.dirty || cycleTime.touched)"
+                                        class="input-group-text" id="basic-addon1">s</span>
+                                </nb-form-field>
+
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="cycleTime.invalid && (cycleTime.dirty || cycleTime.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="cycleTime.errors?.required"> <small>Please enter a cycle Time</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SHOT WEIGHT -->
+                    <div class="form-group" *ngIf="form.value.typeOfMould === 'mould'">
+                        <label for="cycleTime" class="label">Shot weight</label>
+                        <div class="row">
+                            <div class="col-md-2 col-5">
+                                <nb-form-field>
+
+                                    <input type="number"
+                                        [class.is-invalid]="cycleTime.invalid && (cycleTime.dirty || cycleTime.touched)"
+                                        nbInput fullWidth class="form-control" [(ngModel)]="shotWt"
+                                        [ngModelOptions]="{standalone: true}" id="cycleTime">
+                                    <span nbSuffix
+                                        [class.is-invalid]="cycleTime.invalid && (cycleTime.dirty || cycleTime.touched)"
+                                        class="input-group-text" id="basic-addon1">g</span>
+                                </nb-form-field>
+
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="cycleTime.invalid && (cycleTime.dirty || cycleTime.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="cycleTime.errors?.required"> <small>Please enter a cycle Time</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+        <nb-accordion-item>
+            <nb-accordion-item-header>Maintainence Details</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                Item Content
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+    </nb-accordion>
+</nb-card>
+
+<!-- FOOTER -->
+<ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer>

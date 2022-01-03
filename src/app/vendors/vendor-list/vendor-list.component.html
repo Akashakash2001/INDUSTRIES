@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-4">
+        <button nbButton size="small" routerLink='/vendors/new' status="primary">New Vendor</button>
+    </div>
+    <!-- <div class="col-2"> -->
+    <!-- <nb-select size="small" style="margin-left:auto" [(selected)]='sort' status="basic">
+        <nb-option value="1">name</nb-option>
+        <nb-option value="2">Option 2</nb-option>
+        <nb-option value="3">Option 3</nb-option>
+        <nb-option value="4">Option 4</nb-option>
+    </nb-select> -->
+    <!-- </div> -->
+
+    <nb-actions class="col-6">
+        <nb-action icon="search-outline"></nb-action>
+        <nb-action icon="power-outline"> Views</nb-action>
+        <nb-action icon="person-outline"></nb-action>
+        <nb-action icon="home-outline"></nb-action>
+    </nb-actions>
+</div>
+
+<ui-list-view [list]="data" (onclick)="onItemSelected($event)"></ui-list-view>

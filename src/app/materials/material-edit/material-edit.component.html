@@ -1,0 +1,385 @@
+<nb-card>
+    <nb-card-header>Material Details</nb-card-header>
+    <nb-card-body>
+        <!-- <form [formGroup]="form"> -->
+        <!-- BO / RM RADIO -->
+        <div>
+            <label for="inventory" class="label">Type of material</label>
+            <div class="form-group col-md-6">
+                <div class="row radio-section">
+                    <div class="col radio-option">
+                        <label>
+                            <input type="radio" id="RM" name="typeOfMaterial" value="Raw Material" [(ngModel)]="option"
+                                checked>
+                            <div class="card radio-card" for="control_02">
+                                <img class="card-img-top" src="/assets/app/raw-material.svg" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-title text-center label">Polymer</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col radio-option">
+                        <label>
+                            <input type="radio" id="BO" name="typeOfMaterial" [(ngModel)]="option" value="Bought Out">
+                            <div class="card radio-card" for="control_01">
+                                <img class="" src="/assets/app/bought-out.svg" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-title text-center label">Bought Out</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- RAW MATERIAL -->
+
+        <form [formGroup]="rmForm" *ngIf="option == 'Raw Material'">
+            <!-- NAME -->
+            <div class="form-group">
+                <label for="name" class="label">Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" disabled [ngModelOptions]="{standalone: true}" nbInput fullWidth id=" name"
+                            [ngModel]="rmName">
+                    </div>
+                    <!-- ERROR   -->
+                    <div *ngIf="rmForm.get('name').invalid && (rmForm.get('name').dirty || rmForm.get('name').touched)"
+                        class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="rmForm.get('name').errors?.required"> <small>Please enter name of the
+                                        Material</small>
+                                </li>
+                                <li *ngIf="rmForm.get('name').errors?.minlength"> <small>Material Name should contain
+                                        atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- MATERIAL CATEGORY -->
+            <div class="form-group">
+                <label for="name" class="label">Raw Material</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text"
+                            [class.is-invalid]="rmCategory.invalid && (rmCategory.dirty || rmCategory.touched)" nbInput
+                            fullWidth formControlName="rmCategory" id="rmCategory" placeholder="eg. PP - PolyPropylene">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="rmCategory.invalid && (rmCategory.dirty || rmCategory.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="rmCategory.errors?.required"> <small>Please enter name of the
+                                        Material</small>
+                                </li>
+                                <li *ngIf="rmCategory.errors?.minlength"> <small>Material Name should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- GRADE -->
+            <div class="form-group">
+                <label for="grade" class="label">Grade</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="grade.invalid && (grade.dirty || grade.touched)" nbInput
+                            fullWidth formControlName="grade" id="grade" placeholder="eg. MI 3530">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="grade.invalid && (grade.dirty || grade.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="grade.errors?.required"> <small>Please enter grade of the
+                                        Material</small>
+                                </li>
+                                <li *ngIf="grade.errors?.minlength"> <small>Material grade should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- COLOR -->
+            <div class="form-group">
+                <label for="ncolorame" class="label">Color</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="color.invalid && (color.dirty || color.touched)" nbInput
+                            fullWidth formControlName="color" id="color" placeholder="eg. Natural">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="color.invalid && (color.dirty || color.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="color.errors?.required"> <small>Please enter color of the
+                                        Material</small>
+                                </li>
+                                <li *ngIf="color.errors?.minlength"> <small>Material color should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- DESCRIPTION -->
+            <div class="form-group">
+                <label for="description" class="label">Description <small>(optional)</small></label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text"
+                            [class.is-invalid]="rmForm.get('description').invalid && (rmForm.get('description').dirty || rmForm.get('description').touched)"
+                            nbInput fullWidth formControlName="description" id="description"
+                            placeholder="eg. 35% Long Fiber glass filled">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="rmForm.get('description').invalid && (rmForm.get('description').dirty || rmForm.get('description').touched)"
+                        class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="rmForm.get('description').errors?.required"> <small>Please enter description
+                                        for the
+                                        Material</small>
+                                </li>
+                                <li *ngIf="rmForm.get('description').errors?.minlength"> <small>Material description
+                                        should
+                                        contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- VENDOR -->
+            <div class="form-group">
+                <label for="name" class="label">Vendor</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text"
+                            [class.is-invalid]="rmForm.get('vendor').invalid && (rmForm.get('vendor').dirty || rmForm.get('vendor').touched)"
+                            #autoInput nbInput (input)="onChange()" fullWidth [nbAutocomplete]="auto" autocomplete="off"
+                            formControlName="vendor" id="vendor" placeholder="eg. Reliance Industries" />
+                        <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+                            <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option.name">
+                                {{ option.name }}
+                            </nb-option>
+
+                        </nb-autocomplete>
+
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="rmForm.get('vendor').invalid && (rmForm.get('vendor').dirty || rmForm.get('vendor').touched)"
+                        class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="rmForm.get('vendor').errors?.required"> <small>Please enter vendor of the
+                                        Material</small>
+                                </li>
+                                <li *ngIf="rmForm.get('vendor').errors?.minlength"> <small>Vendor should contain
+                                        atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRICE -->
+            <div class="form-group">
+                <label for="name" class="label">Price</label>
+                <div class="row">
+                    <div class="col-md-2 col-5">
+                        <nb-form-field>
+                            <span nbPrefix
+                                [class.is-invalid]="rmForm.get('price').invalid && (rmForm.get('price').dirty || rmForm.get('price').touched)"
+                                class="input-group-text" id="basic-addon1">&#8377;</span>
+                            <input type="number"
+                                [class.is-invalid]="rmForm.get('price').invalid && (rmForm.get('price').dirty || rmForm.get('price').touched)"
+                                nbInput fullWidth class="form-control" formControlName="price" id="price"
+                                placeholder="eg. 120">
+                        </nb-form-field>
+
+                    </div>
+
+
+                    <!-- ERROR -->
+                    <div *ngIf="rmForm.get('price').invalid && (rmForm.get('price').dirty || rmForm.get('price').touched)"
+                        class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="rmForm.get('price').errors?.required"> <small>Please enter a price</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- BOUGHT OUT -->
+        <form [formGroup]="boForm" *ngIf="option == 'Bought Out'">
+            <!-- NAME -->
+            <div class="form-group">
+                <label for="name" class="label">Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text"
+                            [class.is-invalid]="boForm.get('name').invalid && (boForm.get('name').dirty || boForm.get('name').touched)"
+                            nbInput fullWidth formControlName="name" id="name">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="boForm.get('name').invalid && (boForm.get('name').dirty || boForm.get('name').touched)"
+                        class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="boForm.get('name').errors?.required"> <small>Please enter name of the
+                                        Material</small>
+                                </li>
+                                <li *ngIf="boForm.get('name').errors?.minlength"> <small>Material Name should contain
+                                        atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PART NUMBER -->
+            <div class="form-group">
+                <label for="partNumber" class="label">Part Number</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text"
+                            [class.is-invalid]="partNumber.invalid && (partNumber.dirty || partNumber.touched)" nbInput
+                            fullWidth formControlName="partNumber" id="partNumber">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="partNumber.invalid && (partNumber.dirty || partNumber.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="partNumber.errors?.required"> <small>Please enter part Number of the
+                                        Material</small>
+                                </li>
+                                <li *ngIf="partNumber.errors?.minlength"> <small>Material part Number should contain
+                                        atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- DESCRIPTION -->
+            <div class="form-group">
+                <label for="description" class="label">Description <small>(optional)</small></label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text"
+                            [class.is-invalid]="boForm.get('description').invalid && (boForm.get('description').dirty || boForm.get('description').touched)"
+                            nbInput fullWidth formControlName="description" id="description"
+                            placeholder="eg. 35% Long Fiber glass filled">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="boForm.get('description').invalid && (boForm.get('description').dirty || boForm.get('description').touched)"
+                        class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="boForm.get('description').errors?.required"> <small>Please enter name of the
+                                        Material</small>
+                                </li>
+                                <li *ngIf="boForm.get('description').errors?.minlength"> <small>Material Name should
+                                        contain
+                                        atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- VENDOR -->
+            <div class="form-group">
+                <label for="name" class="label">Vendor</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text"
+                        [class.is-invalid]="boForm.get('vendor').invalid && (boForm.get('vendor').dirty || boForm.get('vendor').touched)"
+                            #autoInput nbInput (input)="onChange()" fullWidth [nbAutocomplete]="auto" autocomplete="off"
+                            formControlName="vendor" id="vendor" placeholder="eg. Reliance Industries" />
+                        <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+                            <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option.name">
+                                {{ option.name }}
+                            </nb-option>
+
+                        </nb-autocomplete>
+
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="boForm.get('vendor').invalid && (boForm.get('vendor').dirty || boForm.get('vendor').touched)"
+                        class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="boForm.get('vendor').errors?.required"> <small>Please enter vendor of the
+                                        Material</small>
+                                </li>
+                                <li *ngIf="boForm.get('vendor').errors?.minlength"> <small>Vendor should contain
+                                        atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PRICE -->
+            <div class="form-group">
+                <label for="name" class="label">Price</label>
+                <div class="row">
+                    <div class="col-md-2 col-5">
+                        <nb-form-field>
+                            <span nbPrefix
+                                [class.is-invalid]="boForm.get('price').invalid && (boForm.get('price').dirty || boForm.get('price').touched)"
+                                class="input-group-text" id="basic-addon1">&#8377;</span>
+                            <input type="number"
+                                [class.is-invalid]="boForm.get('price').invalid && (boForm.get('price').dirty || boForm.get('price').touched)"
+                                nbInput fullWidth class="form-control" formControlName="price" id="price"
+                                placeholder="eg. 120">
+                        </nb-form-field>
+
+                    </div>
+
+
+                    <!-- ERROR -->
+                    <div *ngIf="boForm.get('price').invalid && (boForm.get('price').dirty || boForm.get('price').touched)"
+                        class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="boForm.get('price').errors?.required"> <small>Please enter a price</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- SUBMIT -->
+        <!-- <button nbButton status="primary">Save</button> -->
+        <!-- </form> -->
+
+    </nb-card-body>
+</nb-card>
+<!-- FOOTER -->
+<ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer>

@@ -1,0 +1,383 @@
+<nb-card>
+    <nb-card-header>Machine Details</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="form">
+            <div class="form-group">
+                <!-- NAME -->
+                <label for="name" class="label">Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="name.invalid && (name.dirty || name.touched)" nbInput
+                            fullWidth formControlName="name" id="name" placeholder="eg. E120T">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                </li>
+                                <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="code" class="label">Code</label>
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="text" [class.is-invalid]="code.invalid && (code.dirty || code.touched)" nbInput
+                            fullWidth formControlName="code" id="code" placeholder="eg. MC-T-1">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="code.invalid && (code.dirty || code.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="code.errors?.required"> <small>Please enter code of the Machine</small>
+                                </li>
+                                <li *ngIf="code.errors?.minlength"> <small>Machine code should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="make" class="label">Make</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="make.invalid && (make.dirty || make.touched)" nbInput
+                            fullWidth formControlName="make" id="make" placeholder="eg. Engel">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="make.invalid && (make.dirty || make.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="make.errors?.required"> <small>Please enter a make.</small>
+                                </li>
+                                <li *ngIf="make.errors?.minlength"> <small>Make should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </nb-card-body>
+</nb-card>
+
+<nb-card>
+    <nb-accordion>
+        <nb-accordion-item>
+            <nb-card-header>Machine Details</nb-card-header>
+            <nb-card-body>
+            </nb-card-body>
+
+        </nb-accordion-item>
+        <nb-accordion-item>
+            <nb-accordion-item-header>Operational Details</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                <form [formGroup]="form">
+                    <!-- TYPE OF MACHINE -->
+                    <div class="form-group">
+                        <label for="inventoryType" class="label">Type of machine</label>
+                        <div class="row radio-section">
+
+                            <div class="col radio-option">
+                                <label>
+                                    <input type="radio" [(ngModel)]="option" (change)="onChange()" id="WIP"
+                                        formControlName="machineType" value="moulding" checked>
+                                    <div class="card radio-card" for="control_01">
+                                        <img class="" src="/assets/app/moulding.svg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <p class="card-title text-center label">Moulding</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col radio-option">
+                                <label>
+                                    <input type="radio" [(ngModel)]="option" (change)="onChange()" id="FG"
+                                        formControlName="machineType" value="squeezing">
+                                    <div class="card radio-card" for="control_02">
+                                        <img class="card-img-top" src="/assets/app/squeezing.svg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <p class="card-title text-center label">Squeezing</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col radio-option">
+                                <label>
+                                    <input type="radio" [(ngModel)]="option" (change)="onChange()" id="FG"
+                                        formControlName="machineType" value="welding">
+                                    <div class="card radio-card" for="control_02">
+                                        <img class="card-img-top" src="/assets/app/welding.svg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <p class="card-title text-center label">Welding</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col radio-option">
+                                <label>
+                                    <input type="radio" [(ngModel)]="option" (change)="onChange()" id="FG"
+                                        formControlName="machineType" value="Testing">
+                                    <div class="card radio-card" for="control_02">
+                                        <img class="card-img-top" src="/assets/app/testing.svg" alt="Card image cap">
+                                        <div class="card-body">
+                                            <p class="card-title text-center label">Testing</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form [formGroup]="form">
+                    <!-- MACHINE DIMENSIONS -->
+                    <div class="form-group" formGroupName="dimensions">
+                        <label for="name" class="label">Machine dimensions</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <!-- LENGTH -->
+                                    <div class="col-4">
+                                        <div style="text-align: center;">
+                                            <label for="name" class="label"><small>length</small></label>
+                                        </div>
+                                        <nb-form-field>
+                                            <input type="number" formControlName="length"
+                                                [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                                                nbInput fullWidth id="make">
+                                            <span nbSuffix>cm</span>
+                                        </nb-form-field>
+                                    </div>
+                                    <div class="label">
+                                        <span style="position: absolute; top: 50%;">X</span>
+                                    </div>
+                                    <!-- WIDTH -->
+                                    <div class="col-4">
+                                        <div style="text-align: center;">
+                                            <label for="name" class="label"><small>width</small></label>
+                                        </div>
+                                        <nb-form-field>
+                                            <input type="number" formControlName="width"
+                                                [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                                                nbInput fullWidth id="make">
+                                            <span nbSuffix>cm</span>
+                                        </nb-form-field>
+                                    </div>
+                                    <div class="label">
+                                        <span style="position: absolute; top: 50%;">X</span>
+                                    </div>
+                                    <!-- HEIGHT -->
+                                    <div class="col-4">
+                                        <div style="text-align: center;">
+                                            <label for="name" class="label"><small>height</small></label>
+                                        </div>
+                                        <nb-form-field>
+                                            <input type="number" formControlName="height"
+                                                [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                                                nbInput fullWidth id="make">
+                                            <span nbSuffix>cm</span>
+                                        </nb-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                        </li>
+                                        <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form [formGroup]="mouldingMachineParams">
+                    <!-- TONNAGE -->
+                    <div class="form-group" *ngIf="option=='moulding'">
+                        <label for="name" class="label">Tonnage</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" formControlName="tonnage"
+                                    [class.is-invalid]="name.invalid && (name.dirty || name.touched)" nbInput fullWidth
+                                    id="tonnage" placeholder="eg. 60">
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                        </li>
+                                        <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TIE BAR DISTANCE -->
+                    <div class="form-group" *ngIf="option=='moulding'">
+                        <label for="name" class="label">Tie bar distance</label>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <nb-form-field>
+                                    <input type="number" formControlName="tieBarDistance"
+                                        [class.is-invalid]="name.invalid && (name.dirty || name.touched)" nbInput
+                                        fullWidth id="make">
+                                    <span nbSuffix>cm</span>
+                                </nb-form-field>
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                        </li>
+                                        <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PLATTTEN SIZE -->
+                    <div class="form-group" formGroupName="plattenSize" *ngIf="option=='moulding'">
+                        <label for="name" class="label">Platten size</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div style="text-align: center;">
+                                            <label for="name" class="label"><small>length</small></label>
+                                        </div>
+                                        <nb-form-field>
+                                            <input type="number" formControlName="length"
+                                                [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                                                nbInput fullWidth id="make">
+                                            <span nbSuffix>cm</span>
+                                        </nb-form-field>
+
+                                    </div>
+                                    <div class="label">
+                                        <span style="position: absolute; top: 50%;">X</span>
+                                    </div>
+                                    <div class="col-4">
+                                        <div style="text-align: center;">
+                                            <label for="name" class="label"><small>width</small></label>
+                                        </div>
+                                        <nb-form-field>
+                                            <input type="number" formControlName="width"
+                                                [class.is-invalid]="name.invalid && (name.dirty || name.touched)"
+                                                nbInput fullWidth id="make">
+                                            <span nbSuffix>cm</span>
+                                        </nb-form-field>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                        </li>
+                                        <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SCREW SIZE -->
+                    <div class="form-group" *ngIf="option=='moulding'">
+                        <label for="name" class="label">Screw size</label>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <nb-form-field>
+                                    <input type="number" formControlName="screwSize"
+                                        [class.is-invalid]="name.invalid && (name.dirty || name.touched)" nbInput
+                                        fullWidth id="make">
+                                    <span nbSuffix>cm</span>
+                                </nb-form-field>
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                        </li>
+                                        <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MAX SHOT WEIGHT -->
+                    <div class="form-group" *ngIf="option=='moulding'">
+                        <label for="name" class="label">Maximum shot weight</label>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <nb-form-field>
+                                    <input type="number" formControlName="maxShotWt"
+                                        [class.is-invalid]="name.invalid && (name.dirty || name.touched)" nbInput
+                                        fullWidth id="make">
+                                    <span nbSuffix>g </span>
+                                </nb-form-field>
+                            </div>
+                            <!-- ERROR -->
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                                <div class="error">
+                                    <ul>
+                                        <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                        </li>
+                                        <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                                characters.</small>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+        <nb-accordion-item>
+            <nb-accordion-item-header>Maintanence Details</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                Item Content
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+        <nb-accordion-item>
+            <nb-accordion-item-header>Other Details</nb-accordion-item-header>
+            <nb-accordion-item-body>
+                Item Content
+            </nb-accordion-item-body>
+        </nb-accordion-item>
+    </nb-accordion>
+</nb-card>
+
+<!-- <pre>{{form.value | json}}</pre> -->
+<!-- <pre>{{mouldingMachineParams.value | json}}</pre> -->
+<!-- FOOTER -->
+<ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer>

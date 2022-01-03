@@ -1,0 +1,63 @@
+<nb-card>
+    <nb-card-header>Invoice Number
+        <button nbButton ghost status="control" style="float:right;" (click)="onDismissClicked()">
+            <nb-icon icon="close-outline" style="float:right"></nb-icon>
+        </button>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-radio-group [(ngModel)]="radio" name="invoice-number-generation">
+            <nb-radio value="true"  name="radio">Automatically generate invoice
+                number
+                <form>
+                    <div class="row">
+                        <div class="form-group" formGroup="form">
+                            <label for="prefix" class="label">Prefix</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" id="prefix" placeholder="" nbInput [(ngModel)]="prefix">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="current-number" class="label">Current Number</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" id="current-number" placeholder="" nbInput
+                                        [(ngModel)]="currentNumber">
+                                </div>
+                                <!-- ERROR -->
+                                <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                                    <div class="error">
+                                        <ul>
+                                            <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
+                                            </li>
+                                            <li *ngIf="name.errors?.minlength"> <small>Name should contain atleast 3
+                                                    characters.</small>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </nb-radio>
+
+            <nb-radio value="false" name="radio">Enter invoice number
+                everytime</nb-radio>
+
+
+        </nb-radio-group>
+        <div class="col-md-3" style="padding-top: 15px;padding-bottom: 15px;">
+            <button nbButton status="primary" (click)="onSubmitClicked()">Update</button>
+        </div>
+        <!-- <nb-radio-group name="gender" [(ngModel)]="gender">
+            <nb-radio value="male" name="gender">Male</nb-radio>
+            <nb-radio value="female" name="gender">Female</nb-radio>
+        </nb-radio-group> -->
+        <input type="text" [(ngModel)]="price">
+        <pre>{{radio}}</pre>
+    </nb-card-body>
+</nb-card>

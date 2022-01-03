@@ -1,0 +1,116 @@
+<nb-card>
+    <nb-card-header>Batch Details</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="form">
+            <!-- Batch Number -->
+            <div class="form-group">
+                <label for="batchNumber" class="label">Batch Number</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="batchNumber.invalid && (batchNumber.dirty || batchNumber.touched)" nbInput
+                            fullWidth formControlName="batchNumber" id="batchNumber" placeholder="eg. GB LHD Reservoir">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="batchNumber.invalid && (batchNumber.dirty || batchNumber.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="batchNumber.errors?.required"> <small>Please enter a Batch Number.</small>
+                                </li>
+                                <li *ngIf="batchNumber.errors?.minlength"> <small>Number should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PART NAME -->
+            <div class="form-group">
+                <label for="partName" class="label">Part Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="partName.invalid && (partName.dirty || partName.touched)" nbInput
+                            fullWidth formControlName="partName" id="partName" placeholder="eg. GB LHD Reservoir">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="partName.invalid && (partName.dirty || partName.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="partName.errors?.required"> <small>Please enter a name.</small>
+                                </li>
+                                <li *ngIf="partName.errors?.minlength"> <small>Name should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Material Name -->
+            <div class="form-group">
+                <label for="materialName" class="label">Material Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="materialName.invalid && (materialName.dirty || materialName.touched)" nbInput
+                            fullWidth formControlName="materialName" id="materialName" placeholder="eg. 79001">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="materialName.invalid && (materialName.dirty || materialName.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="materialName.errors?.required"> <small>Please enter a code.</small>
+                                </li>
+                                <li *ngIf="materialName.errors?.minlength"> <small>code should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Machine Name -->
+            <div class="form-group">
+                <label for="machineName" class="label">Machine Name</label>
+                <div class="row">
+                    <div class="col-md-3 col-5">
+                        <nb-form-field>
+
+                            <input type="number" [class.is-invalid]="machineName.invalid && (machineName.dirty || machineName.touched)"
+                                nbInput fullWidth class="form-control" formControlName="machineName" id="machineName"
+                                placeholder="eg. 92.50">
+                        </nb-form-field>
+
+                    </div>
+
+
+                    <!-- ERROR -->
+                    <div *ngIf="machineName.invalid && (machineName.dirty || machineName.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="machineName.errors?.required"> <small>Please enter a weight</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Machine Name -->
+            <div class="form-group">
+                <label for="plannedStartTime" class="label">Planned Start Time</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker">
+                        <nb-datepicker #dateTimePicker></nb-datepicker>
+                    </div>
+                    <div class="col-md-6">
+                        <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker">
+                        <nb-datepicker #dateTimePicker></nb-datepicker>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </nb-card-body>
+</nb-card>

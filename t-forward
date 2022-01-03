@@ -1,0 +1,42 @@
+[33m49a1dfc[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m HEAD@{0}: rebase (abort): updating HEAD
+[33me091951[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mtmp[m[33m)[m HEAD@{1}: rebase (start): checkout tmp
+[33me091951[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mtmp[m[33m)[m refs/heads/tmp@{0}: fetch origin master:tmp: storing head
+[33m49a1dfc[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m refs/heads/master@{0}: commit: stable version
+[33m49a1dfc[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m HEAD@{2}: commit: stable version
+[33m6e50336[m refs/heads/master@{1}: commit (merge): Buttons added in dashboard
+[33m6e50336[m HEAD@{3}: commit (merge): Buttons added in dashboard
+[33m04ae4b3[m refs/heads/master@{2}: commit: Tempt
+[33m04ae4b3[m HEAD@{4}: commit: Tempt
+[33me091951[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mtmp[m[33m)[m refs/remotes/origin/master@{0}: pull: fast-forward
+[33m6d8a349[m refs/heads/master@{3}: commit: Invoice update on forms and Form controls
+[33m6d8a349[m HEAD@{5}: commit: Invoice update on forms and Form controls
+[33m3a13828[m refs/heads/master@{4}: pull: Fast-forward
+[33m3a13828[m HEAD@{6}: pull: Fast-forward
+[33m3a13828[m refs/remotes/origin/master@{1}: pull: fast-forward
+[33ma138c98[m refs/remotes/origin/master@{2}: update by push
+[33ma138c98[m HEAD@{7}: checkout: moving from main to master
+[33m1a487ce[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{8}: checkout: moving from master to main
+[33ma138c98[m HEAD@{9}: checkout: moving from main to master
+[33m1a487ce[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{10}: checkout: moving from master to main
+[33ma138c98[m refs/heads/master@{5}: commit (merge): merged and dashboard and organisation details
+[33ma138c98[m HEAD@{11}: commit (merge): merged and dashboard and organisation details
+[33mf9487f2[m HEAD@{12}: checkout: moving from master to master
+[33mf9487f2[m HEAD@{13}: reset: moving to HEAD
+[33mf9487f2[m HEAD@{14}: checkout: moving from main to master
+[33m1a487ce[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{15}: checkout: moving from master to main
+[33mf9487f2[m HEAD@{16}: checkout: moving from main to master
+[33m1a487ce[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{17}: checkout: moving from master to main
+[33mf9487f2[m HEAD@{18}: checkout: moving from main to master
+[33m1a487ce[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{19}: checkout: moving from master to main
+[33mf9487f2[m refs/heads/master@{6}: commit: added settings icon and settings page
+[33mf9487f2[m HEAD@{20}: commit: added settings icon and settings page
+[33m0d3da14[m refs/heads/master@{7}: branch: Created from refs/remotes/origin/master
+[33m0d3da14[m HEAD@{21}: checkout: moving from main to master
+[33m1a487ce[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{22}: checkout: moving from main to main
+[33m0d3da14[m refs/remotes/origin/master@{3}: pull: storing head
+[33m1a487ce[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m refs/remotes/origin/main@{0}: update by push
+[33m1a487ce[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m refs/heads/main@{0}: commit: Dashboard collection card displaying number of items in collection - UI
+[33m1a487ce[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{23}: commit: Dashboard collection card displaying number of items in collection - UI
+[33m8e2354e[m refs/heads/main@{1}: clone: from https://github.com/Brahmarishi/angle.git
+[33m8e2354e[m refs/remotes/origin/HEAD@{0}: clone: from https://github.com/Brahmarishi/angle.git
+[33m8e2354e[m HEAD@{24}: clone: from https://github.com/Brahmarishi/angle.git

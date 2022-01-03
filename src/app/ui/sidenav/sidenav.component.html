@@ -1,0 +1,42 @@
+
+<!-- <nb-sidebar class="sidenav" responsive>
+    <nb-menu [items]="items">
+    </nb-menu>
+  </nb-sidebar> -->
+<div id="mySidenav" class="sidenav" *ngIf="showSidenav">
+    <a href="/dashboard">Dashboard</a>
+
+    
+    <button class="dropdown-btn"  (click)="showMaster = !showMaster">Master
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container" [ngClass]="{show: showMaster, hide: !showMaster}">
+        <a href="/materials">Material</a>
+        <a href="/parts">Part</a>
+        <a href="/mould">Mould</a>
+        <a href="/machines">Machine</a>
+        <a href="/employees">Employee</a>
+        <a href="/customers">Customer</a>
+        <a href="/vendors">Vendor</a>
+    </div>
+    <button class="dropdown-btn"  (click)="showProduction = !showProduction">Production
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <button class="dropdown-btn"  (click)="showProduction = !showProduction">Quality
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <button class="dropdown-btn"  (click)="showProduction = !showProduction">Inventory
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <button class="dropdown-btn"  (click)="showProduction = !showProduction">Engineering
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <button class="dropdown-btn"  (click)="showProduction = !showProduction">Finance
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <a href="/schedule">Schedule</a>
+    <a href="/loading">Loading Sheet</a>
+    <a href="/invoice">Invoice</a>
+</div>
+
+

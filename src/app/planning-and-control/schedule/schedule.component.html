@@ -1,0 +1,42 @@
+<input  [(ngModel)]="month" type="month" id="month" nbInput (change)="onMonthChanged()">
+
+<nb-select placeholder="Select Customer" id="customer" style="margin-left: 20px;" [(selected)]="selectedCustomer">
+    <nb-option *ngFor="let customer of data" [value]="customer.name" (click)="onChange()">{{customer.name}}</nb-option>
+</nb-select>
+
+<!-- <button (click)="onChange()">Dummy</button> -->
+<nb-card>
+    <nb-card-body>
+        <form [formGroup]="scheduleForm">
+        <table style="width: 100%;" formArrayName="items">
+            <tr style="width: 100%;">
+                <th for="partName" class="col-4 form-group">Part Name/Part Number</th>
+                <th for="schedule"class="col-2 table-head">Schedule</th>
+                <th for="dispatched"class="col-2 table-head">Dispatched</th>
+                <th for="balance"class="col-2 table-head">Balance</th>
+                <th for="completed"class="col-2 table-head">% Completed</th>
+            </tr>
+            <tr *ngFor="let item of items.controls; let i = index" class="col-12" [formGroupName]="i" >
+                <td  id="partName"class="col-4">{{item.value.partName}}/{{item.value.partNumber}}</td>
+                <td  id="schedule"class="table-head"><input type="text" class="table-head col-1" id="text" formControlName="schedule" nbInput></td>
+                <td  id="dispatched"class="col-2 table-head">{{item.value.dispatched}}</td>
+                <td  id="balance"class="col-2 table-head">{{item.value.schedule-item.value.dispatched}}</td>
+                <td  id="completed"class="col-2 table-head">
+                    <div class="primary">
+                        <div class="primary" style="height:24px;width:20%"></div>
+                      </div>
+                      
+                </td>
+            </tr>
+        </table>
+        </form>
+    </nb-card-body>
+</nb-card>
+
+<pre>
+<!-- {{data}} -->
+</pre>
+
+
+<!-- footer -->
+<ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer>

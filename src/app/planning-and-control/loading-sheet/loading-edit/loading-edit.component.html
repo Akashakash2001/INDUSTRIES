@@ -1,0 +1,184 @@
+<nb-card>
+    <nb-card-header>Loading sheet</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="loadingForm" novalidate>
+            <!--DATE-->
+            <div class="form-group">
+                <label for="date" class="label">Date</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input nbInput placeholder="Pick Date" [nbDatepicker]="date" formControlName="date" id="date">
+                        <nb-datepicker #date></nb-datepicker>
+                    </div>
+                </div>
+            </div>
+            <!-- PART NUMBER -->
+            <div class="form-group">
+                <label for="partNumber" class="label">Part Number</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input formControlName="partNo"
+                            [class.is-invalid]="partNo.invalid && (partNo.dirty || partNo.touched)" type="text"
+                            id="partNo" fullWidth placeholder="" nbInput>
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="partNo.invalid && (partNo.dirty || partNo.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="partNo.errors?.required"> <small>Please enter PartNumber of the
+                                        Loading Sheet</small>
+                                </li>
+                                <li *ngIf="partNo.errors?.minlength"> <small>Part Number should contain atleast
+                                        3 characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PART NAME -->
+             <div class="form-group">
+                <label for="partName" class="label">Part Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input  formControlName="partName" type="text"
+                            [class.is-invalid]="partName.invalid && (partName.dirty || partName.touched)" id="partName"
+                            fullWidth placeholder="" nbInput>
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="partName.invalid && (partName.dirty || partName.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="partName.errors?.required"> <small>Please enter PartName of the
+                                        Loading Sheet</small>
+                                </li>
+                                <li *ngIf="partName.errors?.minlength"> <small>Part Name should contain atleast
+                                        5 characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <!-- <input type="text" style="margin-bottom: 20px; width: 80%; height: 40px;" s #autoInput
+                [class.is-invalid]="description.invalid && (description.dirty || description.touched)" nbInput fullWidth
+                formControlName="partName" id="partName" (input)="onDataChange()" placeholder="eg-GB LHD"
+                [nbAutocomplete]="auto"> -->
+            <!-- <nb-autocomplete #auto (selectedChange)="onSelectChange($event)">
+
+                <nb-option *ngFor="let option of partsFiltered$ | async" [value]="option.name" formControlName="partName">
+                    {{ option.name }}/{{option.code}}
+                </nb-option>
+
+            </nb-autocomplete> -->
+            <!-- QUANTITY -->
+            <div class="form-group">
+                <label for="quantity" class="label">Quantity</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input formControlName="quantity" type="number"
+                            [class.is-invalid]="quantity.invalid && (quantity.dirty || quantity.touched)" id="quantity"
+                            placeholder="" nbInput>
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="quantity.errors?.required"> <small>Please enter Quantity of the
+                                        Loading Sheet</small>
+                                </li>
+                                <li *ngIf="quantity.errors?.minlength"> <small>Quantity should contain atleast
+                                        1 characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- INVOICE NUMBER -->
+            <div class="form-group">
+                <label for="invoiceNo" class="label">Invoice No</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input formControlName="invoiceNo" type="text" id="invoiceNo" fullWidth placeholder="" nbInput>
+                    </div>
+                </div>
+            </div>
+            <!-- INVOICE DATE -->
+            <div class="form-group">
+                <label for="invoiceDate" class="label">Invoice Date</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input formControlName="invoiceDate" [nbDatepicker]="invoiceDate" id="invoiceDate" fullWidth
+                            placeholder="" nbInput>
+                        <nb-datepicker #invoiceDate></nb-datepicker>
+                    </div>
+                </div>
+            </div>
+            <!-- INVOICE VALUE -->
+            <div class="form-group">
+                <label for="invoiceValue" class="label">Invoice Value</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input formControlName="invoiceValue" type="text" id="invoiceValue" fullWidth placeholder=""
+                            nbInput>
+                    </div>
+                </div>
+            </div>
+            <!-- DRIVER -->
+            <div class="form-group">
+                <label for="name" class="label">Driver</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input formControlName="driver" type="text" id="driver" fullWidth placeholder="" nbInput>
+                    </div>
+                </div>
+            </div>
+            <!-- COMPANY -->
+            <div class="form-group">
+                <label for="name" class="label">Company</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input formControlName="company" type="text" id="company" fullWidth placeholder="" nbInput>
+                    </div>
+                </div>
+            </div>
+            <!-- TRIP -->
+            <div class="form-group">
+                <label for="name" class="label">Trip</label>
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <nb-select formControlName="trip" id="trip"
+                            style="margin-bottom: 20px; width: 70%; height: 40px; background-color: rgb(5, 5, 5); color: rgb(245, 238, 238); border: rgb(5, 5, 5);"
+                            placeholder="eg. 0%">
+                            <nb-option disabled>Select a Trip</nb-option>
+                            <nb-option value="I Trip">I Trip</nb-option>
+                            <nb-option value="II Trip">II Trip</nb-option>
+                            <nb-option value="III Trip">III Trip</nb-option>
+                            <nb-option value="IV Trip">IV Trip</nb-option>
+                            <nb-option value="V Trip">V Trip</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+            </div>
+            <!-- GRN NO -->
+            <div class="form-group">
+                <label for="name" class="label">GRN No</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input formControlName="grnNo" type="text" id="grnNo" placeholder="" nbInput>
+                    </div>
+                </div>
+            </div>
+            <!--DELETE-->
+            <div style="text-align:  right;"><button  nbButton size="small"  status="primary" >
+                <nb-icon icon="trash"></nb-icon>Delete
+            </button></div>
+        </form>
+    </nb-card-body>
+</nb-card>
+
+
+<ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer>

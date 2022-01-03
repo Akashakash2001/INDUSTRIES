@@ -1,0 +1,100 @@
+<nb-card>
+    <nb-card-header>Vendor Details</nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="name" class="label">Name</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" [class.is-invalid]="name.invalid && (name.dirty || name.touched)" nbInput
+                            fullWidth formControlName="name" id="name" placeholder="eg. Morakhot Industries Pvt. Ltd.">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="name.errors?.required"> <small>Please enter name of the Vendor</small>
+                                </li>
+                                <li *ngIf="name.errors?.minlength"> <small>Vendor's Name should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="label">Address</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <textarea type="text" [class.is-invalid]="address.invalid && (address.dirty || address.touched)"
+                            nbInput fullWidth class="form-control" formControlName="address" id="address"
+                            placeholder="eg. No 6/26 Shastri Bhavan                                                                                              2nd Floor, Haddows Road,                                                                  Nungambakkam"
+                            rows="3"></textarea>
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="address.errors?.required"> <small>Please enter an Address</small></li>
+                                <li *ngIf="address.errors?.minlength"> <small>Address should contain atleast 3
+                                        characters.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name" class="label">Pincode</label>
+                <div class="row">
+                    <div class="col-md-2 col-5">
+                        <input type="number" [class.is-invalid]="pincode.invalid && (pincode.dirty || pincode.touched)"
+                            nbInput fullWidth class="form-control" formControlName="pincode" id="pincode"
+                            placeholder="eg. 600001">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="pincode.invalid && (pincode.dirty || pincode.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="pincode.errors?.required"> <small>Please enter a Pincode</small></li>
+                                <li *ngIf="pincode.errors?.minlength"> <small>Part Name should contain 6
+                                        numbers.</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name" class="label">GSTIN</label>
+                <div class="row">
+                    <div class="col-md-3 col-8">
+                        <input type="text" [class.is-invalid]="gstin.invalid && (gstin.dirty || gstin.touched)" nbInput
+                            fullWidth class="form-control" formControlName="gstin" id="gstin"
+                            placeholder="eg. 33AABCT3518Q1Z3">
+                    </div>
+                    <!-- ERROR -->
+                    <div *ngIf="gstin.invalid && (gstin.dirty || gstin.touched)" class="col-md-6">
+                        <div class="error">
+                            <ul>
+                                <li *ngIf="gstin.errors?.required"> <small>Please enter a valid GSTIN</small></li>
+                                <li *ngIf="gstin.errors?.minlength ||  gstin.errors?.maxlength"> <small>GSTIN should
+                                        contain 15
+                                        only
+                                        characters.</small>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </nb-card-body>
+</nb-card>
+<!-- FOOTER -->
+<ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer>
