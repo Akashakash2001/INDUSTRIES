@@ -10,6 +10,10 @@ import { Router } from '@angular/router';
 export class PartListComponent implements OnInit {
   sort: any = '1';
   data: any = [];
+  parts: any;
+  firestore: any;
+  selectedCustomer = '';
+  customers: unknown[];
   constructor(private db: DatabaseService, private router: Router) {
     this.db.getParts().subscribe((data) => {
       this.data = data;
@@ -17,9 +21,17 @@ export class PartListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.db.getCustomers().subscribe((data) => {
+      this.customers = data;
+      this.selectedCustomer
+    });
+    
   }
 
-
+  public onChange(){
+    this.parts = this.firestore.collection('parts',ref=>ref.where('customer','==',this.selectedCustomer)).valueChanges();
+  }
+  
   onItemSelected(item) {
     console.log(item.id);
     this.router.navigate([`/parts/${item.id}`]);

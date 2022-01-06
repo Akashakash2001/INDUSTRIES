@@ -2,6 +2,11 @@
     <div class="col-4">
         <button nbButton size="small" routerLink='/parts/new' status="primary">New Parts</button>
     </div>
+    <nb-select class="col-4" placeholder="Select Customer" id="customer" style="margin-right: 50px;"
+        [(selected)]="selectedCustomer">
+        <nb-option *ngFor="let customer of customers" [value]="customer.name" (click)="onChange()">{{customer.name}}
+        </nb-option>
+    </nb-select>
     <!-- <div class="col-2"> -->
     <!-- <nb-select size="small" style="margin-left:auto" [(selected)]='sort' status="basic">
         <nb-option value="1">name</nb-option>
@@ -18,6 +23,7 @@
         <nb-action icon="home-outline"></nb-action>
     </nb-actions>
 </div>
+
 
 
 <ui-list-view [list]="data" (onclick)="onItemSelected($event)"></ui-list-view>

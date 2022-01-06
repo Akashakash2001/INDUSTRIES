@@ -4,7 +4,10 @@
   
     <nb-list>
         <nb-list-item style="cursor: pointer;" *ngFor="let item of list" (click)="onItemClicked(item)">
-            <span>{{item.name}}</span>
+            <table>
+           <th> <span>{{item.name}}</span></th>/
+        <th> <span>{{item.code}}</span></th>
+        </table>
             <!-- <span *ngIf="item?.typeOfDocument=='loading'">
                 <span *ngIf="item?.date" class="col-2">{{item.date.toMillis()|date:'dd/MM/yyyy'}}</span>
                 <span *ngIf="item?.partNo" class="col-2">{{item.partNo}}</span>
