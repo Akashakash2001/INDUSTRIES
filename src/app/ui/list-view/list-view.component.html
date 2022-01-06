@@ -5,7 +5,7 @@
     <nb-list>
         <nb-list-item style="cursor: pointer;" *ngFor="let item of list" (click)="onItemClicked(item)">
             <table>
-           <th> <span>{{item.name}}</span></th>/
+           <th> <span>{{item.name}}</span></th>
         <th> <span>{{item.code}}</span></th>
         </table>
             <!-- <span *ngIf="item?.typeOfDocument=='loading'">
