@@ -1,3 +1,5 @@
+
+
 <nb-card>
     <nb-card-header>Invoice Details</nb-card-header>
     <nb-card-body>
@@ -6,27 +8,24 @@
             <div class="form-group">
                 <label for="number" class="label">Invoice Number</label>
                 <div class="row">
-                    <div class="col-md-6" *ngIf="autoManual">
+                    <div class="col-md-6" *ngIf="autoManual" >
                         {{number}}
                         <!-- <input disabled="true" formControlName="InvoiceNumber" type="text" id="number" [(ngModel)]="number" nbInput> -->
                     </div>
                     <div class="col-md-6" *ngIf="!autoManual">
-                        <input formControlName="InvoiceNumber" type="text" id="number" placeholder="eg-SIG10" nbInput>
+                        <input formControlName="invoiceNumber" type="text" id="number" placeholder="eg-SIG10" nbInput>
                     </div>
-
-                    <button nbButton status="info" (click)="open()">
-                        <nb-icon icon="edit"></nb-icon>
-                    </button>
+                    
+                        <button nbButton status="primary" (click)="open()"><nb-icon icon="edit"></nb-icon></button>
                 </div>
             </div>
-            <div class="row">
+            <div class= "row">
                 <div style="padding-left: 15px;"></div>
                 <div class="form-group">
                     <label for="date" class="label">Invoice Date</label>
                     <div class="row">
                         <div class="col-md-6">
-                            <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker"
-                                formControlName="date">
+                            <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker" formControlName="date">
                             <nb-datepicker #dateTimePicker></nb-datepicker>
                         </div>
                         <!-- ERROR -->
@@ -43,13 +42,14 @@
                         </div> -->
                     </div>
                 </div>
-
-
-
-
-
-                <!-- ERROR -->
-                <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
+                <div class="form-group">
+                    <label for="po" class="label">PO Number</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input formControlName="poNumber" type="text" id="po" placeholder="" nbInput>
+                        </div>
+                        <!-- ERROR -->
+                        <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)" class="col-md-6">
                             <div class="error">
                                 <ul>
                                     <li *ngIf="name.errors?.required"> <small>Please enter a name.</small>
@@ -60,57 +60,35 @@
                                 </ul>
                             </div>
                         </div> -->
-
-
-
-
-            </div>
-            <div class="form-group">
-                <label for="po" class="label">PO Number</label>
-                <div class="row">
-                    <div class="col-md-6">
-                        <input formControlName="poNumber" type="text" id="po" placeholder="" nbInput>
-                    </div>
-
-                </div>
-            </div>
-
-            <!--<div class= "row">
-            <div style="padding-left: 15px;"></div>
-        <div class="form-group">
-            <label for="text" class="label">Customer</label>
-            <div class="row">
-                <div class="col-md-6">
-                    <input formControlName="Customer" placeholder="eg-Mando" type="text" id="Customer" nbInput>
-                </div>
-            </div>
-        </div>
-        </div>-->
-
-            <div class="form-group">
-                <label for="rm_name" class="label">Customer</label>
-                <div class="row">
-                    <div class="col-md-4">
-                        <input type="text" #autoInput
-                            [class.is-invalid]="description.invalid && (description.dirty || description.touched)"
-                            nbInput fullWidth formControlName="rm_name" id="rm_name" (input)="onDataChange()"
-                            placeholder="eg-Mando" [nbAutocomplete]="auto">
-                        <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
-
-                            <nb-option *ngFor="let option of customersFiltered$ | async" [value]="option.name">
-                                {{ option.name }}
-                            </nb-option>
-
-                        </nb-autocomplete>
                     </div>
                 </div>
-            </div>
-
+                </div>
+                <div class="form-group">
+                    <label for="rm_name" class="label">Customer</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="text" #autoInput
+                                [class.is-invalid]="description.invalid && (description.dirty || description.touched)"
+                                nbInput fullWidth formControlName="rm_name" id="rm_name" (input)="onDataChange()"
+                                placeholder="eg-Mando" [nbAutocomplete]="auto">
+                            <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+    
+                                <nb-option *ngFor="let option of customersFiltered$ | async" [value]="option.name">
+                                    {{ option.name }}
+                                </nb-option>
+    
+                            </nb-autocomplete>
+                        </div>
+                    </div>
+                </div>
+            
         </form>
+
+        
 
     </nb-card-body>
 
-
+    
 </nb-card>
 
 <div class="col-md-3" style="padding-top: 15px;padding-bottom: 15px;">
@@ -162,7 +140,7 @@
                 <!--<p>{{part[0].code}}\{{part[0].name}}<input class="package" style="margin-bottom: 20px; width: 80%; height: 40px;"s type="text" id="package" placeholder="" nbInput>-->
                 <input type="text" style="margin-bottom: 20px; width: 80%; height: 40px;" s #autoInput
                     [class.is-invalid]="description.invalid && (description.dirty || description.touched)" nbInput
-                    fullWidth formControlName="partName" id="partName" (input)="onItemChange()" placeholder="eg-GB LHD"
+                    fullWidth formControlName="partName" id="partName" (input)="onDataChange()" placeholder="eg-GB LHD"
                     [nbAutocomplete]="auto">
                 <nb-autocomplete #auto (selectedChange)="onSelectChange($event)">
 
@@ -216,18 +194,17 @@
 </nb-card>
 
 
-<!-- TERMS AND CONDITION -->
-<div class="row">
-    <div style="margin-left: 16px;"></div>
-    <nb-card class="col-md-6">
-        <p style="font-weight: bold;">Terms & Conditions</p>
-        <textarea nbInput fullWidth
-            placeholder="Enter the terms and conditions of your business to be displayed in your transaction"
-            style="margin-bottom: 20px; height: 150px;"></textarea>
-    </nb-card>
 
-    <div style="margin-left: 30px;"></div>
-    <nb-card class="col-md-5">
+
+
+  <div class="row">
+      <div style="margin-left: 16px;"></div>
+      <nb-card class="col-md-6">
+        <p style="font-weight: bold;">Terms & Conditions</p>
+        <textarea nbInput fullWidth placeholder="Enter the terms and conditions of your business to be displayed in your transaction" style="margin-bottom: 20px; height: 150px;"></textarea>
+      </nb-card>
+      <div style="margin-left: 30px;"></div>
+      <nb-card class="col-md-5">
         <div class="row">
             <p style="font-weight: bold; margin-left:25px;">Subtotal</p>
             <div class="col-md-7"></div>
@@ -236,39 +213,40 @@
         <div class="row">
             <p style="font-weight: bold; margin-left:25px;">TCS</p>
             <nb-select class="col-md-2" placeholder="Select Showcase" [(selected)]="selectedItem">
-                <nb-option value="" disabled>Select a Tax</nb-option>
+                <nb-option value="">Select a Tax</nb-option>
                 <nb-option value="0">CGST/SGST</nb-option>
                 <nb-option value="1">IGST</nb-option>
-                <nb-option value="1">UGST</nb-option>
-            </nb-select>
+              </nb-select>
             <p>0.00</p>
         </div>
-        <div class="row">
+        <div class="row" >
             <p style="font-weight: bold; margin-left:25px;">Shipping Cost</p>
-            <div class="col-md-5"></div>
+            <div class="col-md-5"></div> 
             <input type="text" style="margin-bottom: 10px; width: 20%; height: 40px; " nbInput>
-
         </div>
         <div class="row">
             <p style="font-weight: bold; margin-left:25px;">Total</p>
             <div class="col-md-8"></div>
             <p>0.00</p>
         </div>
-    </nb-card>
-</div>
+      </nb-card>
+  </div>
+  <div>
 
-<div class="row">
-    <div style="margin-left: 18px;"></div>
-    <nb-select status="primary" placeholder="Select Showcase" [(selected)]="selectedItemButton">
-        <nb-option status="primary" value="">Save and Send</nb-option>
-        <nb-option status="primary" value="0"><a routerLink="/print">Save and Print</a></nb-option>
-        <nb-option status="primary" value="1">Save and Share</nb-option>
-        <nb-option status="primary" value="2">Save and Send Later</nb-option>
-    </nb-select>
-    <div class="col-md-1"></div>
-    <button nbButton status="primary" (event)="onButtonClicked($event)">Save as Draft</button>
-    <div class="col-md-1"></div>
-    <button nbButton status="primary">Cancel</button>
+    <div class="row">
+        <div style="margin-left: 18px;"></div>
+        <nb-select status="primary" placeholder="Select Showcase" [(selected)]="selectedItemButton">
+            <nb-option status="primary" value="">Save and Send</nb-option>
+            <nb-option status="primary" value="0"><a routerLink="/print">Save and Print</a></nb-option>
+            <nb-option status="primary" value="1">Save and Share</nb-option>
+            <nb-option status="primary" value="2">Save and Send Later</nb-option>
+        </nb-select>
+        <div class="col-md-1"></div>
+        <button nbButton status="primary" (event)="onButtonClicked($event)">Save as Draft</button>
+        <div class="col-md-1"></div>
+        <button nbButton status="primary">Cancel</button>
+    </div>
+
 </div>
 <!-- FOOTER -->
-<!--<ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer> -->
+<!-- <ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer> -->

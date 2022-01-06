@@ -173,9 +173,7 @@
                 </div>
             </div>
             <!--DELETE-->
-            <div style="text-align:  right;"><button  nbButton size="small"  status="primary" >
-                <nb-icon icon="trash"></nb-icon>Delete
-            </button></div>
+            <app-form-delete (event)="onDeleteClicked($event)" [status]="validity"></app-form-delete>
         </form>
     </nb-card-body>
 </nb-card>

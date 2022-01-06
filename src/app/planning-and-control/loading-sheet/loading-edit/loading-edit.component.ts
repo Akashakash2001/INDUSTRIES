@@ -24,6 +24,7 @@ export class LoadingEditComponent implements OnInit {
   private selectedId: string;
   selectedObject: any;
   autoValue: string;
+  firestore: any;
 
 
   get partNo() {
@@ -79,6 +80,16 @@ export class LoadingEditComponent implements OnInit {
         this.partsFiltered$ = of(list);
       })
   }
+  //Delete
+  onDeleteClicked(clickedButton){
+    this.loadingForm.get("typeOfDocument").setValue("loading");
+    if (clickedButton === "delete"){
+      this.db.click(this.selectedId)
+      this.toast.success('Deleted Successfully');
+      this.location.back()
+    }
+  }
+  
   onItemChange() {
     this.partsFiltered$ = this.getFilteredOptions(this.input.nativeElement.value);
   }

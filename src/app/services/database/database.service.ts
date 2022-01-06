@@ -7,10 +7,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class DatabaseService {
 
-  getQuantity() {
-    throw new Error('Method not implemented.');
-  }
-
   constructor(private firestore: AngularFirestore) { }
   // MATERIALS
   public addMaterial(data: any, id?: string) {
@@ -115,6 +111,9 @@ export class DatabaseService {
   public getLoadingSheet(id: string) {
     return this.firestore.collection('loading').doc(id).valueChanges();
   }
+  public click(id:string){
+	  this.firestore.doc('loading/' + id).delete()
+  }
 
   // Schedule Sheet
   public addScheduleSheet(data: any, id?:string){
@@ -141,5 +140,5 @@ export class DatabaseService {
   public getInvoice(id: string) {
     return this.firestore.collection('invoice').doc(id).valueChanges();
   }
-
 }
+

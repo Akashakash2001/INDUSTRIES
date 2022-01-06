@@ -27,8 +27,8 @@ import { ToastService } from 'src/app/ui/toast.service';
 export class InvoiceComponent implements OnInit {
   autoManual: boolean = false;
   name: Variable;
-
-
+  parts:any;
+  customers:any;
   message = "Manual";
   autoValue: string;
   number: string;
@@ -37,7 +37,7 @@ export class InvoiceComponent implements OnInit {
   p: any;
   selectedItem = '1';
   selectedItemButton = '2';
-
+  
 
   numbers = new Array(1, 4, 9);
 
@@ -119,7 +119,8 @@ export class InvoiceComponent implements OnInit {
     this.form = this.fb.group({
       InvoiceNumber: [''],
       poNumber: [''],
-      date: [''], 
+      date: [''],
+      customer:[''], 
       description: [''],
       rm_name: [''],
       partName: [''],
@@ -182,14 +183,15 @@ export class InvoiceComponent implements OnInit {
 
   openPart() {
     this.itemList.push(undefined);
+  }
     // this.dialogService.open(InvoicePartsComponent).onClose.subscribe(
     //   part => {
     //     this.itemList.push(part);
     //     console.log(part);
     //   }
     // );
-  }
-  onDataChange() {
+  
+  onDataChange(): void {
     this.customersFiltered$ = this.getFilteredOptions(this.input.nativeElement.value);
   }
   onSelectionChange($event) {

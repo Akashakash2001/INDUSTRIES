@@ -106,7 +106,7 @@ export class PartEditComponent implements OnInit {
       nextOperation: [''],
       price: [],
       rm_name: [],
-      tax_slab: [''],
+      tax_slab: [],
 
 
     });

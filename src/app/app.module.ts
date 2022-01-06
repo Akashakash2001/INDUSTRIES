@@ -57,6 +57,7 @@ import { LoadingListComponent } from './planning-and-control/loading-sheet/loadi
 import { LoadingEditComponent } from './planning-and-control/loading-sheet/loading-edit/loading-edit.component';
 import { PrintComponent } from './invoice/print/print.component';
 import { SidenavComponent } from './ui/sidenav/sidenav.component';
+import { FormDeleteComponent } from './ui/Delete/form-delete/form-delete.component';
 
 
 
@@ -93,6 +94,7 @@ import { SidenavComponent } from './ui/sidenav/sidenav.component';
     LoadingListComponent,
     PrintComponent,
     SidenavComponent,
+    FormDeleteComponent,
   ],
   imports: [
     BrowserModule,
