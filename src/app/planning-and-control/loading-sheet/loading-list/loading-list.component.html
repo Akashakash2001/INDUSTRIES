@@ -10,7 +10,7 @@
             <nb-icon icon="plus"></nb-icon>Add Dispatch Record
         </button>
     </div>
-    <input nbInput placeholder="Pick Date" [nbDatepicker]="date" formControlName="date" id="date" >
+    <input nbInput placeholder="Pick Date" [nbDatepicker]="date" [ngModel]="date" id="date" >
     <nb-datepicker #date></nb-datepicker>
     <nb-select class="col-4" placeholder="Select Customer" id="customer" style="margin-left: 20px;"
         [(selected)]="selectedCustomer">
