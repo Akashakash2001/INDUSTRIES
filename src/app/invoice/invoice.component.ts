@@ -267,9 +267,8 @@ export class InvoiceComponent implements OnInit {
 
 
 // ONSUBMIT
-onButtonClicked(clickedButton) {
+onButton() {
   console.log(this.form.value)
-  if (clickedButton === 'save') {
     this.db.addInvoice(this.form.value, this.selectedId)
       .then(() => {
         this.toast.success('Invoice updated succesfully');
@@ -280,4 +279,3 @@ onButtonClicked(clickedButton) {
       });
     }
   }
-}

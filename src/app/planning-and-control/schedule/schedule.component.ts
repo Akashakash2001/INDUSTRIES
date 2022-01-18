@@ -14,7 +14,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class ScheduleComponent implements OnInit {
 
-  
+  load: any = [];
   data: any = [];
   customer: any;
   selectedCustomer = '';
@@ -64,6 +64,11 @@ export class ScheduleComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.db.getLoadingSheetList().subscribe ((load) => {
+      this.load =load;
+    });
+
     this.db.getCustomers().subscribe((data) => {
       this.data = data;
       this.parts = this.db.getParts();
@@ -76,7 +81,6 @@ export class ScheduleComponent implements OnInit {
         id: [''],
         items: this.fb.array([]),
         typeOfDocument: ['']
-        
       });
       
 
