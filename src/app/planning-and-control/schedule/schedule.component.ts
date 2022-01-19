@@ -189,8 +189,5 @@ export class ScheduleComponent implements OnInit {
           this.toast.success('Schedule updated succesfully')   
         });
     }
-
   }
-
-
 }
