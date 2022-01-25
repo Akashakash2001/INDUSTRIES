@@ -13,7 +13,7 @@
                         <!-- <input disabled="true" formControlName="InvoiceNumber" type="text" id="number" [(ngModel)]="number" nbInput> -->
                     </div>
                     <div class="col-md-6" *ngIf="!autoManual">
-                        <input formControlName="invoiceNumber" type="text" id="number" placeholder="eg-SIG10" nbInput>
+                        <input formControlName="InvoiceNumber" type="text" id="number" placeholder="eg-SIG10" nbInput>
                     </div>
                     
                         <button nbButton status="primary" (click)="open()"><nb-icon icon="edit"></nb-icon></button>
@@ -25,7 +25,7 @@
                     <label for="date" class="label">Invoice Date</label>
                     <div class="row">
                         <div class="col-md-6">
-                            <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker" formControlName="date">
+                            <input nbInput placeholder="Pick Date" id="date" [nbDatepicker]="dateTimePicker" formControlName="date">
                             <nb-datepicker #dateTimePicker></nb-datepicker>
                         </div>
                         <!-- ERROR -->
@@ -69,7 +69,7 @@
                         <div class="col-md-4">
                             <input type="text" #autoInput
                                 [class.is-invalid]="description.invalid && (description.dirty || description.touched)"
-                                nbInput fullWidth formControlName="rm_name" id="rm_name" (input)="onDataChange()"
+                                nbInput fullWidth formControlName="customer" id="customer" (input)="onDataChange()"
                                 placeholder="eg-Mando" [nbAutocomplete]="auto">
                             <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
     
@@ -160,15 +160,14 @@
                     nbInput>
             </td>
             <td>
-                <p>rate</p>
-
-            </td>
+            <div id="rate"*ngFor="let items of rate" >{{items.price}}</div></td>
             <td>
                 <!--{{part[0].price}}--><input class="Quantity" style="margin-bottom: 20px; width: 40%; height: 40px;"
-                    type="text" id="Quantity" placeholder="" nbInput>
+                    type="text" id="quantity" placeholder="" nbInput>
             </td>
             <td>
-                <p>amount</p>
+                <div *ngFor="let items of rate" >{{items.price}}</div>
+
             </td>
             <!-- TAX SLAB -->
             <td>
@@ -185,7 +184,7 @@
             </td>
             <td>
                 <!--{{part[3]}}--><input class="package" style="margin-bottom: 20px; width: 80%; height: 40px;"
-                    type="text" id="package" placeholder="" nbInput>
+                    type="text" id="packingDetails" placeholder="" nbInput>
             </td>
         <tr>
 
@@ -200,7 +199,7 @@
   <div class="row">
       <div style="margin-left: 16px;"></div>
       <nb-card class="col-md-6">
-        <p style="font-weight: bold;">Terms & Conditions</p>
+        <p formControlName="description" id="description"style="font-weight: bold;">Terms & Conditions</p>
         <textarea nbInput fullWidth placeholder="Enter the terms and conditions of your business to be displayed in your transaction" style="margin-bottom: 20px; height: 150px;"></textarea>
       </nb-card>
       <div style="margin-left: 30px;"></div>
@@ -213,7 +212,7 @@
         <div class="row">
             <p style="font-weight: bold; margin-left:25px;">TCS</p>
             <nb-select class="col-md-2" placeholder="Select Showcase" [(selected)]="selectedItem">
-                <nb-option value="">Select a Tax</nb-option>
+                <nb-option disabled value="">Select a Tax</nb-option>
                 <nb-option value="0">CGST/SGST</nb-option>
                 <nb-option value="1">IGST</nb-option>
               </nb-select>
@@ -234,7 +233,7 @@
   <div>
 
     <div class="row">
-        <div style="margin-left: 18px;"></div>
+        <div style="margin-left: 18px;"></div>   
         <nb-select status="primary" placeholder="Select Showcase" [(selected)]="selectedItemButton">
             <nb-option status="primary" value="">Save and Send</nb-option>
             <nb-option status="primary" value="0"><a routerLink="/print">Save and Print</a></nb-option>
@@ -244,9 +243,10 @@
         <div class="col-md-1"></div>
         <button nbButton status="primary" (click)="onButton()">Save as Draft</button>
         <div class="col-md-1"></div>
-        <button nbButton status="primary">Cancel</button>
+        <button  nbButton status="primary"(click)="onDismissClicked()">
+            <span>Cancel</span>
+        </button>
     </div>
-
 </div>
 <!-- FOOTER -->
 <!-- <ui-form-footer (event)="onButtonClicked($event)" [status]="validity"></ui-form-footer> -->

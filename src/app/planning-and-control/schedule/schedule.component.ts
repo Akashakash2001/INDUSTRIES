@@ -120,7 +120,7 @@ export class ScheduleComponent implements OnInit {
     this.db.getScheduleSheet(string).get()
       .toPromise()
       .then((docSnapshot) => {    
-        if (docSnapshot.exists) {
+        if (docSnapshot.exists)  {
           // Object exists
           this.scheduleForm.controls['id'].setValue(docSnapshot.data().id);
           this.scheduleForm.controls['typeOfDocument'].setValue("docSnapshot.data().typeOfDocument");

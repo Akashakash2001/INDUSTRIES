@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewChild, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy,EventEmitter, ViewChild, OnInit,Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location, NumberSymbol } from '@angular/common';
@@ -25,9 +25,11 @@ import { ToastService } from 'src/app/ui/toast.service';
 
 
 export class InvoiceComponent implements OnInit {
+  @Output() event = new EventEmitter<string>();
   autoManual: boolean = false;
   name: Variable;
   parts:any;
+  rate: any;
   customers:any;
   message = "Manual";
   autoValue: string;
@@ -40,6 +42,7 @@ export class InvoiceComponent implements OnInit {
   
 
   numbers = new Array(1, 4, 9);
+ 
 
   get date() {
     return this.form.get('date');
@@ -62,8 +65,8 @@ export class InvoiceComponent implements OnInit {
   get quantity() {
     return this.form.get('quantity');
   }
-  get package() {
-    return this.form.get('package');
+  get packingDetails() {
+    return this.form.get('packingDetails');
   }
   get rm_name() {
     return this.form.get('rm_name');
@@ -105,6 +108,12 @@ export class InvoiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.db.getParts().subscribe ((rate) => {
+      this.rate =rate;
+    });
+    
+
     console.log("1");
     this.data.currentMessage.subscribe(message => this.updatemode(message));
     this.data.currentInvoice.subscribe(message => this.updateNumber(message));
@@ -208,6 +217,10 @@ export class InvoiceComponent implements OnInit {
 
   recieveMessage($event) {
     this.message = $event;
+  }
+  onDismissClicked() {
+    this.event.emit('dismiss');
+    this.location.back();
   }
 
   updatemode(msg: string) {
